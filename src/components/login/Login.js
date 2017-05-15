@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, FormGroup, Checkbox, HelpBlock } from "react-bootstrap";
-
+import Loading from "components/core/Loading";
 import FieldGroup from "components/core/FieldGroup";
 
 const Login = ({
@@ -12,39 +12,42 @@ const Login = ({
   handlePasswordChange,
   emailValue,
   passwordValue,
-  errorMessage
+  errorMessage,
+  isLoading
 }) => (
-  <form className="form-signin" onSubmit={handleSubmit}>
-    <h2 className="form-signin-heading">Please sign in</h2>
-    <FieldGroup
-      formGroupClassName="field-group-email"
-      id="formControlsEmail"
-      type="email"
-      label="Email"
-      srOnly
-      placeholder="Email"
-      validationState={getEmailValidationState()}
-      value={emailValue}
-      onChange={handleEmailChange}
-    />
-    <FieldGroup
-      id="formControlsPassword"
-      label="Password"
-      srOnly
-      type="password"
-      placeholder="Password"
-      validationState={getPasswordValidationState()}
-      value={passwordValue}
-      onChange={handlePasswordChange}
-    />
-    <FormGroup validationState={errorMessage ? "error" : null}>
-      <HelpBlock>{errorMessage}</HelpBlock>
-      <Checkbox>Remember me</Checkbox>
-    </FormGroup>
-    <Button bsStyle="primary" bsSize="large" block type="submit">
-      Submit
-    </Button>
-  </form>
+  <Loading loading={isLoading}>
+    <form className="form-signin" onSubmit={handleSubmit}>
+      <h2 className="form-signin-heading">Please sign in</h2>
+      <FieldGroup
+        formGroupClassName="field-group-email"
+        id="formControlsEmail"
+        type="email"
+        label="Email"
+        srOnly
+        placeholder="Email"
+        validationState={getEmailValidationState()}
+        value={emailValue}
+        onChange={handleEmailChange}
+      />
+      <FieldGroup
+        id="formControlsPassword"
+        label="Password"
+        srOnly
+        type="password"
+        placeholder="Password"
+        validationState={getPasswordValidationState()}
+        value={passwordValue}
+        onChange={handlePasswordChange}
+      />
+      <FormGroup validationState={errorMessage ? "error" : null}>
+        <HelpBlock>{errorMessage}</HelpBlock>
+        <Checkbox>Remember me</Checkbox>
+      </FormGroup>
+      <Button bsStyle="primary" bsSize="large" block type="submit">
+        Submit
+      </Button>
+    </form>
+  </Loading>
 );
 
 Login.propTypes = {
@@ -55,7 +58,8 @@ Login.propTypes = {
   handlePasswordChange: PropTypes.func.isRequired,
   emailValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default Login;

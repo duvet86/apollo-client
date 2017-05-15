@@ -3,7 +3,7 @@ import {
   SubscriptionClient,
   addGraphQLSubscriptions
 } from "subscriptions-transport-ws";
-
+import { getLocalStorageToken } from "lib/localStorageAPI";
 import { GRAPHQL_URL, WEBSOCKET_URL } from "lib/constants";
 
 const wsClient = new SubscriptionClient(WEBSOCKET_URL, {
@@ -22,7 +22,7 @@ networkInterface.use([
       }
 
       // get the authentication token from local storage if it exists
-      const token = localStorage.getItem("jwt_token");
+      const token = getLocalStorageToken();
       if (token) {
         req.options.headers.authorization = `Bearer ${token}`;
       }

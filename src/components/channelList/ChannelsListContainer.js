@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { gql, graphql } from "react-apollo";
-
 import Loading from "components/core/Loading";
 import AddChannelContainer from "components/addChannel/AddChannelContainer";
 import ChannelsList from "components/channelList/ChannelsList";

@@ -1,11 +1,14 @@
 import "css/login.css";
 
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { gql, graphql } from "react-apollo";
 
-import browserHistory from "lib/browserHistory";
 import Login from "components/login/Login";
+import PropTypes from "prop-types";
+import browserHistory from "lib/browserHistory";
+import { connect } from "react-redux";
+import { removeLoading } from "actions/loading";
+import { setLocalStorageToken } from "lib/localStorageAPI";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -13,8 +16,14 @@ class LoginContainer extends Component {
     this.state = {
       email: "",
       password: "",
-      errorMessage: ""
+      errorMessage: "",
+      isLoading: false
     };
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(removeLoading());
   }
 
   componentWillMount() {
@@ -40,6 +49,7 @@ class LoginContainer extends Component {
         emailValue={this.state.email}
         passwordValue={this.state.password}
         errorMessage={this.state.errorMessage}
+        isLoading={this.state.isLoading}
       />
     );
   }
@@ -75,6 +85,8 @@ class LoginContainer extends Component {
       return;
     }
 
+    this.setState({ isLoading: true });
+
     this.props
       .mutate({
         variables: {
@@ -85,10 +97,11 @@ class LoginContainer extends Component {
       .then(({ data }) => {
         const { login } = data;
         if (login.error) {
+          this.setState({ isLoading: false });
           this.setState({ errorMessage: login.error });
         } else {
           const { user } = login;
-          localStorage.setItem("jwt_token", user.jwtToken);
+          setLocalStorageToken(user.jwtToken);
           browserHistory.push("/");
         }
       });
@@ -99,8 +112,9 @@ LoginContainer.propTypes = {
   mutate: PropTypes.func.isRequired
 };
 
-export default graphql(
-  gql`
+export default connect()(
+  graphql(
+    gql`
     mutation login($email: String!, $password: String!) {
       login(email: $email, password: $password) {
         user {
@@ -111,4 +125,5 @@ export default graphql(
       }
     }
   `
-)(LoginContainer);
+  )(LoginContainer)
+);
