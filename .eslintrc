@@ -30,7 +30,6 @@
             "error",
             "double"
         ],
-        "no-console": "off",
-        "no-unused-vars": "error"
+        "no-console": "off"
     }
 }

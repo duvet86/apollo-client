@@ -8,7 +8,7 @@ import {
   FormControl
 } from "react-bootstrap";
 
-const AddChannel = ({ handleKeyUp }) => {
+const AddChannel = ({ handleAddChannel }) => {
   return (
     <Form
       horizontal
@@ -24,7 +24,7 @@ const AddChannel = ({ handleKeyUp }) => {
           <FormControl
             type="text"
             placeholder="New channel"
-            onKeyUp={handleKeyUp}
+            onKeyUp={handleAddChannel}
           />
         </Col>
       </FormGroup>
@@ -33,7 +33,7 @@ const AddChannel = ({ handleKeyUp }) => {
 };
 
 AddChannel.propTypes = {
-  handleKeyUp: PropTypes.func.isRequired
+  handleAddChannel: PropTypes.func.isRequired
 };
 
 export default AddChannel;
