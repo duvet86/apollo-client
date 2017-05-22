@@ -2,8 +2,7 @@
     "extends": "react-app",
     "parser": "babel-eslint",
     "env": {
-        "browser": true,
-        "node": true
+        "browser": true
     },
     "parserOptions": {
         "ecmaVersion": 6,
@@ -30,6 +29,7 @@
             "error",
             "double"
         ],
-        "no-console": "off"
+        "no-console": "off",
+        "jsx-a11y/alt-text": [0]
     }
 }
