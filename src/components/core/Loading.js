@@ -13,7 +13,10 @@ const Loading = ({ children, loading, error }) => {
 };
 
 Loading.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element
+  ]).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.shape({
     message: PropTypes.string

@@ -22,13 +22,11 @@ class ChannelsListContainer extends Component {
     const { isLoading, error, channels } = this.props;
     return (
       <Loading loading={isLoading} error={error}>
-        <div>
-          <AddChannel handleAddChannel={this.handleAddChannel} />
-          <ChannelsList
-            channels={channels}
-            handleDeleteChannel={this.handleDeleteChannel}
-          />
-        </div>
+        <AddChannel handleAddChannel={this.handleAddChannel} />
+        <ChannelsList
+          channels={channels}
+          handleDeleteChannel={this.handleDeleteChannel}
+        />
       </Loading>
     );
   }
