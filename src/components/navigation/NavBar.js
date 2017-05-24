@@ -3,10 +3,8 @@ import logo from "logo.svg";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, Navbar, FormGroup, FormControl, Image } from "react-bootstrap";
-
 import { topBarRoutes } from "components/routes";
 import NavItemLink from "components/core/NavItemLink";
-
 import LogoutContainer from "components/logout/LogoutContainer";
 
 const NavBar = () => (

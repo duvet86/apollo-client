@@ -3,7 +3,7 @@ import "css/index.css";
 
 import {
   AuthenticatedRoute,
-  CustomRoute,
+  CustomRoute
 } from "components/routes/CustomRoutes";
 
 import { ApolloProvider } from "react-apollo";

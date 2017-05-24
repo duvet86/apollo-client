@@ -29,7 +29,8 @@
     "eslint": "^3.19.0",
     "eslint-plugin-graphql": "^0.8.0",
     "prop-types": "^15.5.8",
-    "react-scripts": "^1.0.2"
+    "react-scripts": "^1.0.2",
+    "why-did-you-update": "^0.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
