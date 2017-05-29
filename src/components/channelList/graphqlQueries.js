@@ -16,7 +16,7 @@ const removeChannelMutation = gql`
 `;
 
 const channelsListQuery = gql`
-   query ChannelsListQuery {
+   query channelsListQuery {
      channels {
        id
        name

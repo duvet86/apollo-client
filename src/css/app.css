@@ -25,6 +25,10 @@ body {
   padding: 0;
 }
 
+.badge-warning {
+  background-color: #f7be1e;
+}
+
 
 /*
  * Sidebar

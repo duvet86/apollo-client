@@ -1,14 +1,13 @@
 import "css/app.css";
 
 import App from "components/App";
-import { connect } from "react-redux";
+import { graphql } from "react-apollo";
+import { loggedUserQuery } from "components/graphqlQueries";
 
-const mapStateToProps = ({ loading }) => {
-  return {
-    isLoading: loading.isLoading
-  };
-};
-
-const AppContainer = connect(mapStateToProps)(App);
-
-export default AppContainer;
+export default graphql(loggedUserQuery, {
+  props: ({ ownProps, data: { loading, loggedUser, error } }) => ({
+    isLoading: loading,
+    user: loggedUser,
+    error
+  })
+})(App);

@@ -8,9 +8,9 @@ import Loading from "components/core/Loading";
 import NavBar from "components/navigation/NavBar";
 import SideBar from "components/navigation/SideBar";
 
-const App = ({ children, isLoading }) => (
+const App = ({ children, isLoading, user }) => (
   <Loading loading={isLoading}>
-    <NavBar />
+    <NavBar user={user} />
     <Grid fluid>
       <Row>
         <SideBar />

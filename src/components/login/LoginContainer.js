@@ -1,7 +1,7 @@
 import "css/login.css";
 
 import React, { Component } from "react";
-import { gql, graphql } from "react-apollo";
+import { graphql } from "react-apollo";
 
 import Login from "components/login/Login";
 import PropTypes from "prop-types";
@@ -9,6 +9,8 @@ import browserHistory from "lib/browserHistory";
 import { connect } from "react-redux";
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
+import { loggedUserQuery } from "components/graphqlQueries";
+import { loginMutation } from "components/login/graphqlQueries";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -41,11 +43,11 @@ class LoginContainer extends Component {
   render() {
     return (
       <Login
-        handleSubmit={this.handleSubmit}
-        getEmailValidationState={this.getEmailValidationState}
-        getPasswordValidationState={this.getPasswordValidationState}
-        handleEmailChange={this.handleEmailChange}
-        handlePasswordChange={this.handlePasswordChange}
+        handleSubmit={this._handleSubmit}
+        getEmailValidationState={this._getEmailValidationState}
+        getPasswordValidationState={this._getPasswordValidationState}
+        handleEmailChange={this._handleEmailChange}
+        handlePasswordChange={this._handlePasswordChange}
         emailValue={this.state.email}
         passwordValue={this.state.password}
         errorMessage={this.state.errorMessage}
@@ -54,29 +56,29 @@ class LoginContainer extends Component {
     );
   }
 
-  getEmailValidationState = () => {
+  _getEmailValidationState = () => {
     if (this.state.errorMessage) return "error";
     const length = this.state.email.length;
     if (length > 8) return "success";
     else if (length > 0) return "error";
   };
 
-  getPasswordValidationState = () => {
+  _getPasswordValidationState = () => {
     if (this.state.errorMessage) return "error";
     const length = this.state.password.length;
     if (length > 3) return "success";
     else if (length > 0) return "error";
   };
 
-  handleEmailChange = evt => {
+  _handleEmailChange = evt => {
     this.setState({ email: evt.target.value });
   };
 
-  handlePasswordChange = evt => {
+  _handlePasswordChange = evt => {
     this.setState({ password: evt.target.value });
   };
 
-  handleSubmit = evt => {
+  _handleSubmit = evt => {
     evt.preventDefault();
 
     const email = this.state.email.trim();
@@ -92,6 +94,17 @@ class LoginContainer extends Component {
         variables: {
           email,
           password
+        },
+        update: (store, { data: { login } }) => {
+          const data = store.readQuery({
+            query: loggedUserQuery
+          });
+
+          data.loggedUser = login.user;
+          store.writeQuery({
+            query: loggedUserQuery,
+            data
+          });
         }
       })
       .then(({ data }) => {
@@ -100,8 +113,8 @@ class LoginContainer extends Component {
           this.setState({ isLoading: false });
           this.setState({ errorMessage: login.error });
         } else {
-          const { user } = login;
-          setLocalStorageToken(user.jwtToken);
+          const { user: { jwtToken } } = login;
+          setLocalStorageToken(jwtToken);
           browserHistory.push("/");
         }
       });
@@ -112,18 +125,4 @@ LoginContainer.propTypes = {
   mutate: PropTypes.func.isRequired
 };
 
-export default connect()(
-  graphql(
-    gql`
-    mutation login($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
-        user {
-          jwtToken
-          email
-        }
-        error
-      }
-    }
-  `
-  )(LoginContainer)
-);
+export default connect()(graphql(loginMutation)(LoginContainer));

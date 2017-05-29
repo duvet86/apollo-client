@@ -22,13 +22,13 @@ class ChannelsListContainer extends Component {
       <Loading loading={isLoading} error={error}>
         <ChannelsList
           channels={channels}
-          handleDeleteChannel={this.handleDeleteChannel}
+          handleDeleteChannel={this._handleDeleteChannel}
         />
       </Loading>
     );
   }
 
-  handleDeleteChannel = id => {
+  _handleDeleteChannel = id => {
     const { removeChannelMutation } = this.props;
     removeChannelMutation({
       variables: { id },
@@ -77,7 +77,7 @@ const makeQuery = compose(
         subscribeToMore({
           document: newChannelSubscription,
           updateQuery: (prev, { subscriptionData: { data } }) => {
-            if (!data) {
+            if (data == null) {
               return prev;
             }
 
@@ -90,7 +90,7 @@ const makeQuery = compose(
         subscribeToMore({
           document: removedChannelSubscription,
           updateQuery: (prev, { subscriptionData: { data } }) => {
-            if (!data) {
+            if (data == null) {
               return prev;
             }
 

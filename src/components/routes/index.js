@@ -2,7 +2,7 @@ import DashBoard from "components/navigation/DashBoard";
 import ChannelPage from "components/channelList/ChannelPage";
 import PageBuilderContainer from "components/pageBuilder/PageBuilderContainer";
 import Settings from "components/navigation/Settings";
-import Profile from "components/navigation/Profile";
+//import Profile from "components/navigation/Profile";
 import Help from "components/navigation/Help";
 
 const routes = [
@@ -33,14 +33,14 @@ const routes = [
     label: "Settings",
     component: Settings
   },
+  // {
+  //   id: 5,
+  //   path: "/profile",
+  //   label: "Profile",
+  //   component: Profile
+  // },
   {
     id: 5,
-    path: "/profile",
-    label: "Profile",
-    component: Profile
-  },
-  {
-    id: 6,
     path: "/help",
     label: "Help",
     component: Help
