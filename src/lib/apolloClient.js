@@ -22,9 +22,9 @@ networkInterface.use([
       }
 
       // get the authentication token from local storage if it exists
-      const token = getLocalStorageToken();
-      if (token) {
-        req.options.headers.authorization = `Bearer ${token}`;
+      const jwtToken = getLocalStorageToken();
+      if (jwtToken) {
+        req.options.headers.authorization = `Bearer ${jwtToken.token}`;
       }
       next();
     }

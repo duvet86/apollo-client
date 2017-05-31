@@ -14,8 +14,9 @@ import { setLoading } from "actions/loading";
 const LogoutContainer = ({ mutate, dispatch }) => {
   const handleLogout = () => {
     dispatch(setLoading());
+    const { token } = getLocalStorageToken();
     mutate({
-      variables: { jwtToken: getLocalStorageToken() }
+      variables: { jwtToken: token }
     })
       .then(res => {
         deleteLocalStorageToken();

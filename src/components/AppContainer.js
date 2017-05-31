@@ -1,8 +1,22 @@
 import "css/app.css";
 
-import App from "components/App";
+import React from "react";
 import { graphql } from "react-apollo";
+import { Redirect } from "react-router-dom";
+
+import App from "components/App";
 import { loggedUserQuery } from "components/graphqlQueries";
+import { isUserAuthenticated } from "lib/authAPI";
+
+const AppContainer = props =>
+  (isUserAuthenticated()
+    ? <App {...props} />
+    : <Redirect
+        to={{
+          pathname: "/login",
+          state: { from: props.location }
+        }}
+      />);
 
 export default graphql(loggedUserQuery, {
   props: ({ ownProps, data: { loading, loggedUser, error } }) => ({
@@ -10,4 +24,4 @@ export default graphql(loggedUserQuery, {
     user: loggedUser,
     error
   })
-})(App);
+})(AppContainer);

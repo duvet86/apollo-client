@@ -3,7 +3,7 @@ import { SET_LOADING, REMOVE_LOADING } from "actions/loading";
 
 const initialState = { isLoading: false };
 
-const loading = (state = initialState, action) => {
+const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOADING:
     case REMOVE_LOADING:
@@ -17,4 +17,4 @@ const loading = (state = initialState, action) => {
   }
 };
 
-export default loading;
+export default loadingReducer;

@@ -1,12 +1,12 @@
 import "css/login.css";
 
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
+import { connect } from "react-redux";
 
 import Login from "components/login/Login";
-import PropTypes from "prop-types";
 import browserHistory from "lib/browserHistory";
-import { connect } from "react-redux";
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
 import { loggedUserQuery } from "components/graphqlQueries";
