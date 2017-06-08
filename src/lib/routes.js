@@ -1,8 +1,8 @@
 import DashBoard from "components/navigation/DashBoard";
-import ChannelPage from "components/channelList/ChannelPage";
+import ChannelsListContainer
+  from "components/channelList/ChannelsListContainer";
 import PageBuilderContainer from "components/pageBuilder/PageBuilderContainer";
 import Settings from "components/navigation/Settings";
-//import Profile from "components/navigation/Profile";
 import Help from "components/navigation/Help";
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
     id: 2,
     path: "/channellist",
     label: "Channel List",
-    component: ChannelPage,
+    component: ChannelsListContainer,
     isSideBar: true
   },
   {
@@ -33,12 +33,6 @@ const routes = [
     label: "Settings",
     component: Settings
   },
-  // {
-  //   id: 5,
-  //   path: "/profile",
-  //   label: "Profile",
-  //   component: Profile
-  // },
   {
     id: 5,
     path: "/help",

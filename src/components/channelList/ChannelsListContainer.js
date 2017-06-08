@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphql, compose } from "react-apollo";
+
 import Loading from "components/core/Loading";
 import ChannelsList from "components/channelList/ChannelsList";
+import AddChannelContainer from "components/channelList/AddChannelContainer";
 import {
   channelsListQuery,
   newChannelSubscription,
@@ -20,6 +22,7 @@ class ChannelsListContainer extends Component {
     const { isLoading, error, channels } = this.props;
     return (
       <Loading loading={isLoading} error={error}>
+        <AddChannelContainer />
         <ChannelsList
           channels={channels}
           handleDeleteChannel={this._handleDeleteChannel}

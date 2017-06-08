@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`error, show error message 1`] = `
+exports[`Loading component error, show error message 1`] = `
 <div
   className="well"
 >
@@ -8,13 +8,13 @@ exports[`error, show error message 1`] = `
 </div>
 `;
 
-exports[`laoding, hides content 1`] = `
+exports[`Loading component laoding, hides content 1`] = `
 <div
   id="loader"
 />
 `;
 
-exports[`not loading, renders children 1`] = `
+exports[`Loading component not loading, renders children 1`] = `
 <div
   className="animate-bottom"
 >

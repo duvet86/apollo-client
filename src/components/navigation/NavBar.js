@@ -14,7 +14,7 @@ import {
   Glyphicon,
   Label
 } from "react-bootstrap";
-import { topBarRoutes } from "components/routes";
+import { topBarRoutes } from "lib/routes";
 import NavItemLink from "components/core/NavItemLink";
 import LogoutContainer from "components/logout/LogoutContainer";
 

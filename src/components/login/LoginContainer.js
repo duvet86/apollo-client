@@ -4,11 +4,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import Login from "components/login/Login";
-import browserHistory from "lib/browserHistory";
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
+
+import Login from "components/login/Login";
 import { loggedUserQuery } from "components/graphqlQueries";
 import { loginMutation } from "components/login/graphqlQueries";
 
@@ -19,7 +20,8 @@ class LoginContainer extends Component {
       email: "",
       password: "",
       errorMessage: "",
-      isLoading: false
+      isLoading: false,
+      isAuthenticated: false
     };
   }
 
@@ -41,19 +43,24 @@ class LoginContainer extends Component {
   }
 
   render() {
-    return (
-      <Login
-        handleSubmit={this._handleSubmit}
-        getEmailValidationState={this._getEmailValidationState}
-        getPasswordValidationState={this._getPasswordValidationState}
-        handleEmailChange={this._handleEmailChange}
-        handlePasswordChange={this._handlePasswordChange}
-        emailValue={this.state.email}
-        passwordValue={this.state.password}
-        errorMessage={this.state.errorMessage}
-        isLoading={this.state.isLoading}
-      />
-    );
+    return this.state.isAuthenticated
+      ? <Redirect
+          to={{
+            pathname: "/",
+            state: { from: this.props.location }
+          }}
+        />
+      : <Login
+          handleSubmit={this._handleSubmit}
+          getEmailValidationState={this._getEmailValidationState}
+          getPasswordValidationState={this._getPasswordValidationState}
+          handleEmailChange={this._handleEmailChange}
+          handlePasswordChange={this._handlePasswordChange}
+          emailValue={this.state.email}
+          passwordValue={this.state.password}
+          errorMessage={this.state.errorMessage}
+          isLoading={this.state.isLoading}
+        />;
   }
 
   _getEmailValidationState = () => {
@@ -115,7 +122,7 @@ class LoginContainer extends Component {
         } else {
           const { user: { jwtToken } } = login;
           setLocalStorageToken(jwtToken);
-          browserHistory.push("/");
+          this.setState({ isAuthenticated: true });
         }
       });
   };
