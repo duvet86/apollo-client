@@ -15,7 +15,7 @@ const Login = ({
   errorMessage,
   isLoading
 }) => (
-  <Loading loading={isLoading}>
+  <Loading isLoading={isLoading}>
     <form className="form-signin" onSubmit={handleSubmit}>
       <h2 className="form-signin-heading">Please sign in</h2>
       <FieldGroup

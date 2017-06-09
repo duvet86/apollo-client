@@ -3,7 +3,7 @@ import "css/app.css";
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import AppWithData from "components/App/AppWithData";
+import AppWithData from "components/app/AppWithData";
 import { isUserAuthenticated } from "lib/authApi";
 
 const AuthenticatedApp = (props) =>

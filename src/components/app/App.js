@@ -9,7 +9,7 @@ import NavBar from "components/navigation/NavBar";
 import SideBar from "components/navigation/SideBar";
 
 const App = ({ children, isLoading, user }) => (
-  <Loading loading={isLoading}>
+  <Loading isLoading={isLoading}>
     <NavBar user={user} />
     <Grid fluid>
       <Row>

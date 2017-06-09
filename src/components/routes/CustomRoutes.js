@@ -3,6 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 
 import { isUserAuthenticated } from "lib/authApi";
 
+import LoginContainer from "components/login/LoginContainer";
+
 const AuthenticatedRoute = ({ component, ...props }) => (
   <Route
     {...props}
@@ -18,7 +20,7 @@ const AuthenticatedRoute = ({ component, ...props }) => (
   />
 );
 
-const CustomRoute = ({ component, ...props }) => (
+const UnauthenticatedRoute = ({ component, ...props }) => (
   <Route
     {...props}
     render={props =>
@@ -33,4 +35,8 @@ const CustomRoute = ({ component, ...props }) => (
   />
 );
 
-export { AuthenticatedRoute, CustomRoute };
+const LoginRoute = () => (
+  <UnauthenticatedRoute exact path="/login" component={LoginContainer} />
+);
+
+export { AuthenticatedRoute, UnauthenticatedRoute, LoginRoute };

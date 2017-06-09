@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
 
-import App from "components/App/App";
+import App from "components/app/App";
 import { loggedUserQuery } from "components/graphqlQueries";
 
 export default graphql(loggedUserQuery, {

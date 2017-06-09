@@ -5,7 +5,7 @@ import { create } from "react-test-renderer";
 describe("Loading component", () => {
   it("not loading, renders children", () => {
     const tree = create(
-      <Loading loading={false}><div>Test</div></Loading>
+      <Loading isLoading={false}><div>Test</div></Loading>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -13,7 +13,7 @@ describe("Loading component", () => {
 
   it("laoding, hides content", () => {
     const tree = create(
-      <Loading loading={true}><div>Test</div></Loading>
+      <Loading isLoading={true}><div>Test</div></Loading>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -21,7 +21,7 @@ describe("Loading component", () => {
 
   it("error, show error message", () => {
     const tree = create(
-      <Loading loading={true} error={{ message: "Something's gone wrong." }}>
+      <Loading isLoading={true} error={{ message: "Something's gone wrong." }}>
         <div>Test</div>
       </Loading>
     ).toJSON();

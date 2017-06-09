@@ -21,7 +21,7 @@ class ChannelsListContainer extends Component {
   render() {
     const { isLoading, error, channels } = this.props;
     return (
-      <Loading loading={isLoading} error={error}>
+      <Loading isLoading={isLoading} error={error}>
         <AddChannelContainer />
         <ChannelsList
           channels={channels}

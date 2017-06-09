@@ -2,22 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Well } from "react-bootstrap";
 
-const Loading = ({ children, loading, error }) => {
+const Loading = ({ isLoading, children, error, pastDelay = true }) => {
   if (error) {
-    return <Well>{error.message}</Well>;
+    return (
+      <Well>
+        {error.message ? error.message : "Error! Component failed to load."}
+      </Well>
+    );
   }
-  if (loading) {
-    return <div id="loader" />;
+  if (isLoading) {
+    return pastDelay ? <div id="loader" /> : null;
   }
-  return <div className="animate-bottom">{children}</div>;
+  if (children) {
+    return <div className="animate-bottom">{children}</div>;
+  }
+  return null;
 };
 
 Loading.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  pastDelay: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element
-  ]).isRequired,
-  loading: PropTypes.bool.isRequired,
+  ]),
   error: PropTypes.shape({
     message: PropTypes.string
   })
