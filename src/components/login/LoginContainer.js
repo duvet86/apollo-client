@@ -9,9 +9,10 @@ import { Redirect } from "react-router-dom";
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
 
-import Login from "components/login/Login";
-import { loggedUserQuery } from "components/graphqlQueries";
+import { loggedUser, routes, initialStatus } from "graphqlQueries";
 import { loginMutation } from "components/login/graphqlQueries";
+
+import Login from "components/login/Login";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -103,14 +104,17 @@ class LoginContainer extends Component {
           password
         },
         update: (store, { data: { login } }) => {
-          const data = store.readQuery({
-            query: loggedUserQuery
-          });
-
-          data.loggedUser = login.user;
           store.writeQuery({
-            query: loggedUserQuery,
-            data
+            query: initialStatus,
+            data: { initialStatus: login }
+          });
+          store.writeQuery({
+            query: loggedUser,
+            data: { loggedUser: login.user }
+          });
+          store.writeQuery({
+            query: routes,
+            data: { routes: login.routes }
           });
         }
       })

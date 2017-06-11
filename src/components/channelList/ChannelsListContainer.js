@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphql, compose } from "react-apollo";
 
-import Loading from "components/core/Loading";
+import withLoading from "lib/withLoading";
+
 import ChannelsList from "components/channelList/ChannelsList";
 import AddChannelContainer from "components/channelList/AddChannelContainer";
 import {
@@ -19,15 +20,15 @@ class ChannelsListContainer extends Component {
   }
 
   render() {
-    const { isLoading, error, channels } = this.props;
+    const { channels } = this.props;
     return (
-      <Loading isLoading={isLoading} error={error}>
+      <div>
         <AddChannelContainer />
         <ChannelsList
           channels={channels}
           handleDeleteChannel={this._handleDeleteChannel}
         />
-      </Loading>
+      </div>
     );
   }
 
@@ -106,4 +107,4 @@ const makeQuery = compose(
   })
 );
 
-export default makeQuery(ChannelsListContainer);
+export default makeQuery(withLoading(ChannelsListContainer));

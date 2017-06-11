@@ -1,42 +1,36 @@
-import asyncComponent from "lib/asyncComponent";
-
 const routes = [
   {
     id: 1,
-    path: "/",
+    locationPath: "/",
     label: "Dashboard",
-    component: asyncComponent(() => import("components/navigation/DashBoard")),
+    componentName: "asyncDashBoard",
     isSideBar: true
   },
   {
     id: 2,
-    path: "/channellist",
+    locationPath: "/channellist",
     label: "Channel List",
-    component: asyncComponent(() =>
-      import("components/channelList/ChannelsListContainer")
-    ),
+    componentName: "asyncChannelsListContainer",
     isSideBar: true
   },
   {
     id: 3,
-    path: "/pageBuilder",
+    locationPath: "/pageBuilder",
     label: "Page Builder",
-    component: asyncComponent(() =>
-      import("components/pageBuilder/PageBuilderContainer")
-    ),
+    componentName: "asyncPageBuilderContainer",
     isSideBar: true
   },
   {
     id: 4,
-    path: "/settings",
+    locationPath: "/settings",
     label: "Settings",
-    component: asyncComponent(() => import("components/navigation/Settings"))
+    componentName: "asyncSettings"
   },
   {
     id: 5,
-    path: "/help",
+    locationPath: "/help",
     label: "Help",
-    component: asyncComponent(() => import("components/navigation/Help"))
+    componentName: "asyncHelp"
   }
 ];
 

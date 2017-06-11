@@ -61,8 +61,8 @@ const NavBar = ({ user: { name } }) => (
           <MenuItem divider />
           <MenuItem eventKey={3.4}>Separated link</MenuItem>
         </NavDropdown>
-        {topBarRoutes.map(({ id, path, label }) => (
-          <NavItemLink key={id} exact path={path} label={label} />
+        {topBarRoutes.map(({ id, locationPath, label }) => (
+          <NavItemLink key={id} exact path={locationPath} label={label} />
         ))}
       </Nav>
     </Navbar.Collapse>

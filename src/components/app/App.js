@@ -4,27 +4,53 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Grid, Row } from "react-bootstrap";
 
-import Loading from "components/core/Loading";
+import withLoading from "lib/withLoading";
+import * as mapping from "lib/componentMapping";
+
+import { AuthenticatedRoute } from "components/routes/CustomRoutes";
 import NavBar from "components/navigation/NavBar";
 import SideBar from "components/navigation/SideBar";
 
-const App = ({ children, isLoading, user }) => (
-  <Loading isLoading={isLoading}>
+const App = ({ isLoading, user, routes }) => (
+  <div>
     <NavBar user={user} />
     <Grid fluid>
       <Row>
         <SideBar />
         <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">
-          {children}
+          {routes.map(({ id, locationPath, componentName }) => (
+            <AuthenticatedRoute
+              key={id}
+              exact
+              path={locationPath}
+              component={mapping[componentName]}
+            />
+          ))}
         </Col>
       </Row>
     </Grid>
-  </Loading>
+  </div>
 );
 
 App.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    jwtToken: PropTypes.shape({
+      token: PropTypes.string.isRequired,
+      created: PropTypes.number.isRequired
+    })
+  }),
+  routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      locationPath: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      componentName: PropTypes.string.isRequired,
+      isSideBar: PropTypes.bool
+    })
+  )
 };
 
-export default App;
+export default withLoading(App);
