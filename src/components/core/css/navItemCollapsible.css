@@ -1,0 +1,22 @@
+.nav-item-collapsible.expanded {
+    background-color: #ddd;
+}
+
+.nav-item-collapsible .panel {
+    margin-bottom: 0;
+    background-color: #ddd;
+    border: 0;
+    border-radius: 4px;
+}
+
+.nav-item-collapsible .panel-body {
+    padding: 0;
+}
+
+.nav-item-collapsible .nav-sidebar > li > a {
+    padding-left: 75px;
+}
+
+.nav-item-collapsible .nav-sidebar {
+    margin-bottom: 0;
+}

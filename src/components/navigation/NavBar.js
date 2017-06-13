@@ -10,8 +10,6 @@ import {
   Label
 } from "react-bootstrap";
 
-import { topBarRoutes } from "lib/routes";
-import NavItemLink from "components/core/NavItemLink";
 import LogoutContainer from "components/logout/LogoutContainer";
 import LogoLink from "components/navigation/LogoLink";
 import NotificationBadge from "components/core/NotificationBadge";
@@ -57,9 +55,6 @@ const NavBar = ({ user: { name } }) => (
           <MenuItem divider />
           <MenuItem eventKey={3.4}>Separated link</MenuItem>
         </NavDropdown>
-        {topBarRoutes.map(({ id, locationPath, label }) => (
-          <NavItemLink key={id} exact path={locationPath} label={label} />
-        ))}
       </Nav>
     </Navbar.Collapse>
   </Navbar>

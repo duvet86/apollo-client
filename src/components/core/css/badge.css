@@ -1,3 +1,11 @@
 .badge-warning {
   background-color: #f7be1e;
 }
+
+.badge-pulse {
+  animation: blinker 2s linear 5;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
