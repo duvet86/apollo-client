@@ -1,3 +1,5 @@
+import "components/navigation/css/sideBar.css";
+
 import React from "react";
 import { Col, Nav } from "react-bootstrap";
 

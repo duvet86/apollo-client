@@ -1,13 +1,16 @@
 import React from "react";
 import { Row, Col, Table } from "react-bootstrap";
 
+import PageHeader from "components/core/PageHeader";
+import SubHeader from "components/core/SubHeader";
 import SimpleLineChart from "components/charting/SimpleLineChart";
-import SpecifiedDomainRadarChart from "components/charting/SpecifiedDomainRadarChart";
+import SpecifiedDomainRadarChart
+  from "components/charting/SpecifiedDomainRadarChart";
 
 const DashBoard = () => (
   <div>
-    <h1 className="page-header">Dashboard</h1>
-    <Row className="placeholders">
+    <PageHeader>Dashboard</PageHeader>
+    <Row className="row-container">
       <Col xs={6} md={6}>
         <SimpleLineChart />
       </Col>
@@ -15,7 +18,7 @@ const DashBoard = () => (
         <SpecifiedDomainRadarChart />
       </Col>
     </Row>
-    <h2 className="sub-header">Section title</h2>
+    <SubHeader>Section title</SubHeader>
     <Table responsive striped>
       <thead>
         <tr>

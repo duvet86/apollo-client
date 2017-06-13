@@ -1,5 +1,3 @@
-import "css/login.css";
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
@@ -8,10 +6,8 @@ import { Redirect } from "react-router-dom";
 
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
-
 import { loggedUser, routes, initialStatus } from "graphqlQueries";
 import { loginMutation } from "components/login/graphqlQueries";
-
 import Login from "components/login/Login";
 
 class LoginContainer extends Component {

@@ -1,9 +1,10 @@
+import "components/login/css/login.css";
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, FormGroup, Checkbox, HelpBlock } from "react-bootstrap";
 
 import withLoading from "lib/withLoading";
-
 import FieldGroup from "components/core/FieldGroup";
 
 const Login = ({

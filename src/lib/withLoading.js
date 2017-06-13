@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Well } from "react-bootstrap";
 
+import LoadingSpinner from "components/core/LoadingSpinner";
+import AnimateContent from "components/core/AnimateContent";
+
 export default function withLoading(WrappedComponent) {
   return class extends Component {
     render() {
@@ -13,10 +16,14 @@ export default function withLoading(WrappedComponent) {
         );
       }
       if (isLoading) {
-        return <div id="loader" />;
+        return <LoadingSpinner />;
       }
 
-      return <WrappedComponent {...this.props} />;
+      return (
+        <AnimateContent>
+          <WrappedComponent {...this.props} />
+        </AnimateContent>
+      );
     }
   };
 }

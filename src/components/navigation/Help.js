@@ -1,5 +1,6 @@
 import React from "react";
+import PageHeader from "components/core/PageHeader";
 
-const Help = () => <h1 className="page-header">Help!</h1>;
+const Help = () => <PageHeader>Help!</PageHeader>;
 
 export default Help;

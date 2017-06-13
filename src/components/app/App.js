@@ -1,4 +1,4 @@
-import "css/app.css";
+import "components/app/css/app.css";
 
 import React from "react";
 import PropTypes from "prop-types";

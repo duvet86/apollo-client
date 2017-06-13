@@ -1,5 +1,6 @@
 import React from "react";
+import PageHeader from "components/core/PageHeader";
 
-const Profile = () => <h1 className="page-header">Profile!</h1>;
+const Profile = () => <PageHeader>Profile!</PageHeader>;
 
 export default Profile;

@@ -17,12 +17,12 @@ const FieldGroup = ({
   type,
   placeholder,
   onChange,
-  formGroupClassName
+  className
 }) => (
   <FormGroup
     controlId={id}
     validationState={validationState}
-    className={formGroupClassName}
+    className={className}
   >
     <ControlLabel srOnly={srOnly}>{label}</ControlLabel>
     <FormControl
@@ -49,7 +49,7 @@ FieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   placeholder: PropTypes.string,
-  formGroupClassName: PropTypes.string
+  className: PropTypes.string
 };
 
 export default FieldGroup;

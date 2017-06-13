@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Well } from "react-bootstrap";
+import LoadingSpinner from "components/core/LoadingSpinner";
 
 const Loading = ({ isLoading, error, pastDelay }) => {
   if (error) {
@@ -11,8 +12,9 @@ const Loading = ({ isLoading, error, pastDelay }) => {
     );
   }
   if (isLoading) {
-    return pastDelay ? <div id="loader" /> : null;
+    return pastDelay ? <LoadingSpinner /> : null;
   }
+
   return null;
 };
 

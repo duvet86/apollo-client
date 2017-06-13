@@ -1,5 +1,6 @@
 import React from "react";
+import PageHeader from "components/core/PageHeader";
 
-const Home = () => <h1 className="page-header">Welcome!</h1>;
+const Home = () => <PageHeader>Welcome!</PageHeader>;
 
 export default Home;

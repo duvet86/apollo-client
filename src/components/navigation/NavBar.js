@@ -1,7 +1,4 @@
-import logo from "logo.svg";
-
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   Nav,
   Navbar,
@@ -9,22 +6,21 @@ import {
   MenuItem,
   FormGroup,
   FormControl,
-  Image,
-  Badge,
   Glyphicon,
   Label
 } from "react-bootstrap";
+
 import { topBarRoutes } from "lib/routes";
 import NavItemLink from "components/core/NavItemLink";
 import LogoutContainer from "components/logout/LogoutContainer";
+import LogoLink from "components/navigation/LogoLink";
+import NotificationBadge from "components/core/NotificationBadge";
 
 const NavBar = ({ user: { name } }) => (
   <Navbar fluid fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link className="navbar-brand" to="/">
-          <Image src={logo} className="app-logo" responsive />
-        </Link>
+        <LogoLink />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -44,7 +40,7 @@ const NavBar = ({ user: { name } }) => (
               <div>
                 <Glyphicon style={{ marginRight: "10px" }} glyph="user" />{name}
               </div>
-              <div><Badge className="badge-warning">4</Badge></div>
+              <div><NotificationBadge warning>4</NotificationBadge></div>
             </div>
           }
           id="user-nav"

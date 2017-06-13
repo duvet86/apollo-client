@@ -1,5 +1,6 @@
 import React from "react";
+import PageHeader from "components/core/PageHeader";
 
-const Settings = () => <h1 className="page-header">Settings!</h1>;
+const Settings = () => <PageHeader>Settings!</PageHeader>;
 
 export default Settings;
