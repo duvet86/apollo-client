@@ -4,8 +4,6 @@ import {
   Navbar,
   NavDropdown,
   MenuItem,
-  FormGroup,
-  FormControl,
   Glyphicon,
   Label
 } from "react-bootstrap";
@@ -18,16 +16,11 @@ const NavBar = ({ user: { name } }) => (
   <Navbar fluid fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
-        <LogoLink />
+        <LogoLink appName="My App" />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <Navbar.Form pullLeft>
-        <FormGroup>
-          <FormControl type="text" placeholder="Search" />
-        </FormGroup>
-      </Navbar.Form>
       <LogoutContainer />
       <Nav pullRight>
         <NavDropdown

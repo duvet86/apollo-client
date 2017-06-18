@@ -1,0 +1,15 @@
+.search-box span.input-group-addon {
+  border-radius: 0;
+}
+
+.search-box input[type=text].form-control {
+  border-radius: 0;
+}
+
+.search-box .input-group-btn:last-child>.btn {
+  margin-right: -1px;
+}
+
+.search-box.input-group-sm>.input-group-btn>.btn {
+  border-radius: 0;
+}

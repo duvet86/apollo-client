@@ -19,7 +19,7 @@ const Loading = ({ isLoading, error, pastDelay }) => {
 };
 
 Loading.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   pastDelay: PropTypes.bool,
   error: PropTypes.shape({
     message: PropTypes.string

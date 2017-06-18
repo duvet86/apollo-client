@@ -4,7 +4,7 @@ import Loading from "components/core/Loading";
 export default function asyncComponent(importComponent) {
   return Loadable({
     loader: importComponent,
-    LoadingComponent: Loading,
+    loading: Loading,
     delay: 200
   });
 }

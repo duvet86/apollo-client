@@ -11,10 +11,10 @@ const DashBoard = () => (
   <div>
     <PageHeader>Dashboard</PageHeader>
     <Row className="row-container">
-      <Col xs={6} md={6}>
+      <Col xs={12} md={6}>
         <SimpleLineChart />
       </Col>
-      <Col xs={6} md={6}>
+      <Col xs={12} md={6}>
         <SpecifiedDomainRadarChart />
       </Col>
     </Row>

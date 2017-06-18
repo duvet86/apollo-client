@@ -1,3 +1,7 @@
+.nav-item-collapsible a {
+    cursor: pointer;
+}
+
 .nav-item-collapsible.expanded {
     background-color: #ddd;
 }
@@ -14,7 +18,7 @@
 }
 
 .nav-item-collapsible .nav-sidebar > li > a {
-    padding-left: 75px;
+    padding-left: 35px;
 }
 
 .nav-item-collapsible .nav-sidebar {

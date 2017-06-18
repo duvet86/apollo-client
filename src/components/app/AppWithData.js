@@ -8,6 +8,9 @@ export default graphql(initialStatus, {
     isLoading: loading,
     user: initialStatus ? initialStatus.user : null,
     routes: initialStatus ? initialStatus.routes : null,
+    sideBarRoutes: initialStatus
+      ? initialStatus.routes.filter(route => route.isSideBar)
+      : null,
     error
   })
 })(App);

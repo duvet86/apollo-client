@@ -5,7 +5,9 @@ import { NavItem } from "react-bootstrap";
 
 const NavItemLink = ({ path, label, ...props }) => (
   <LinkContainer {...props} to={path}>
-    <NavItem><i className="fa fa-link" aria-hidden="true" />{" "}{label}</NavItem>
+    <NavItem>
+      <i className="fa fa-link" aria-hidden="true" />{" "}{label}
+    </NavItem>
   </LinkContainer>
 );
 

@@ -1,32 +1,19 @@
-import "components/app/css/app.css";
-
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Grid, Row } from "react-bootstrap";
+import { Grid, Row } from "react-bootstrap";
 
 import withLoading from "lib/withLoading";
-import * as mapping from "lib/componentMapping";
-
-import { AuthenticatedRoute } from "components/routes/CustomRoutes";
 import NavBar from "components/navigation/NavBar";
-import SideBar from "components/navigation/SideBar";
+import SideBarContainer from "components/sidebar/SideBarContainer";
+import BodyContainer from "components/app/BodyContainer";
 
-const App = ({ isLoading, user, routes }) => (
+const App = ({ isLoading, user, routes, sideBarRoutes }) => (
   <div>
     <NavBar user={user} />
     <Grid fluid>
       <Row>
-        <SideBar />
-        <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">
-          {routes.map(({ id, locationPath, componentName }) => (
-            <AuthenticatedRoute
-              key={id}
-              exact
-              path={locationPath}
-              component={mapping[componentName]}
-            />
-          ))}
-        </Col>
+        <SideBarContainer routes={sideBarRoutes} />
+        <BodyContainer routes={routes} />
       </Row>
     </Grid>
   </div>
@@ -43,6 +30,15 @@ App.propTypes = {
     })
   }),
   routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      locationPath: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      componentName: PropTypes.string.isRequired,
+      isSideBar: PropTypes.bool
+    })
+  ),
+  sideBarRoutes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       locationPath: PropTypes.string.isRequired,

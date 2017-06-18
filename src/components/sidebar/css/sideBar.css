@@ -1,0 +1,27 @@
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    /* To prevent sidebar to move when scrollbar appears */
+    width: 215px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    padding: 0;
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    /* Scrollable contents if viewport is shorter than content. */
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+    border-right: 1px solid #eee;
+  }
+}
