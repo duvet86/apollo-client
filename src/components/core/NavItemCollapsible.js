@@ -1,8 +1,8 @@
 import "components/core/css/navItemCollapsible.css";
 
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Nav, Panel } from "react-bootstrap";
-import { topBarRoutes } from "lib/routes";
 import NavItemLink from "components/core/NavItemLink";
 
 class NavItemCollapsible extends Component {
@@ -14,7 +14,7 @@ class NavItemCollapsible extends Component {
   }
 
   render() {
-    const { label } = this.props;
+    const { label, children } = this.props;
     let iconClassName = "fa fa-folder-o fa-lg";
     if (this.state.open) {
       iconClassName = "fa fa-folder-open-o fa-lg";
@@ -29,8 +29,8 @@ class NavItemCollapsible extends Component {
         </a>
         <Panel collapsible expanded={this.state.open}>
           <Nav className="nav-sidebar">
-            {topBarRoutes.map(({ id, locationPath, label }) => (
-              <NavItemLink key={id} exact path={locationPath} label={label} />
+            {children.map(({ id, location, label }) => (
+              <NavItemLink key={id} exact path={location} label={label} />
             ))}
           </Nav>
         </Panel>
@@ -38,5 +38,17 @@ class NavItemCollapsible extends Component {
     );
   }
 }
+
+NavItemCollapsible.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      location: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      order: PropTypes.number.isRequired
+    })
+  )
+};
 
 export default NavItemCollapsible;

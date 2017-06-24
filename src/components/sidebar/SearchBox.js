@@ -4,7 +4,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 
-const SearchBox = ({ searchTerm, handleClick, handleChange }) => {
+const SearchBox = ({ searchTerm, handleClick, handleChange, inputRef }) => {
   let addOn = (
     <InputGroup.Addon>
       <i className="fa fa-search" aria-hidden="true" />
@@ -27,6 +27,7 @@ const SearchBox = ({ searchTerm, handleClick, handleChange }) => {
         placeholder="Search"
         value={searchTerm}
         onChange={handleChange}
+        inputRef={inputRef}
       />
       {addOn}
     </InputGroup>

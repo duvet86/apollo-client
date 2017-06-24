@@ -8,6 +8,7 @@ import {
   Label
 } from "react-bootstrap";
 
+import withLoading from "lib/withLoading";
 import LogoutContainer from "components/logout/LogoutContainer";
 import LogoLink from "components/navigation/LogoLink";
 import NotificationBadge from "components/core/NotificationBadge";
@@ -29,7 +30,8 @@ const NavBar = ({ user: { name } }) => (
           title={
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div>
-                <Glyphicon style={{ marginRight: "10px" }} glyph="user" />{name}
+                <Glyphicon style={{ marginRight: "10px" }} glyph="user" />
+                {name}
               </div>
               <div><NotificationBadge warning>4</NotificationBadge></div>
             </div>
@@ -53,4 +55,4 @@ const NavBar = ({ user: { name } }) => (
   </Navbar>
 );
 
-export default NavBar;
+export default withLoading(NavBar);

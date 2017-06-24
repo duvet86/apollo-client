@@ -11,13 +11,15 @@ const SideBar = ({
   currentlyDisplayedLinks,
   searchTerm,
   handleChange,
-  handleClick
+  handleClick,
+  inputRef
 }) => (
   <Col sm={3} md={2} className="sidebar">
     <SearchBox
       searchTerm={searchTerm}
       handleChange={handleChange}
       handleClick={handleClick}
+      inputRef={inputRef}
     />
     <LinkList currentlyDisplayedLinks={currentlyDisplayedLinks} />
   </Col>
@@ -27,10 +29,9 @@ SideBar.propTypes = {
   currentlyDisplayedLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      locationPath: PropTypes.string.isRequired,
+      location: PropTypes.string,
       label: PropTypes.string.isRequired,
-      componentName: PropTypes.string.isRequired,
-      isSideBar: PropTypes.bool
+      order: PropTypes.number.isRequired
     })
   ),
   searchTerm: PropTypes.string.isRequired,

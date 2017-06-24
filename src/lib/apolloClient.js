@@ -1,8 +1,9 @@
-import { ApolloClient, createNetworkInterface } from "react-apollo";
 import {
   SubscriptionClient,
   addGraphQLSubscriptions
 } from "subscriptions-transport-ws";
+import ApolloClient, { createNetworkInterface } from "apollo-client";
+
 import { getLocalStorageToken } from "lib/localStorageAPI";
 import { GRAPHQL_URL, WEBSOCKET_URL } from "lib/constants";
 

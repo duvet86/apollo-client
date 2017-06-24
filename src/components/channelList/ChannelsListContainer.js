@@ -47,7 +47,7 @@ class ChannelsListContainer extends Component {
         // Read the data from our cache for this query.
         const data = store.readQuery({ query: channelsListQuery });
         const index = data.channels.findIndex(c => {
-          return c.id === removeChannel.id;
+          return c.id === removeChannel;
         });
         if (index === -1) {
           return;

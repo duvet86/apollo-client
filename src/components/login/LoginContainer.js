@@ -6,7 +6,6 @@ import { Redirect } from "react-router-dom";
 
 import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
-import { loggedUser, routes, initialStatus } from "graphqlQueries";
 import { loginMutation } from "components/login/graphqlQueries";
 import Login from "components/login/Login";
 
@@ -99,20 +98,20 @@ class LoginContainer extends Component {
           email,
           password
         },
-        update: (store, { data: { login } }) => {
-          store.writeQuery({
-            query: initialStatus,
-            data: { initialStatus: login }
-          });
-          store.writeQuery({
-            query: loggedUser,
-            data: { loggedUser: login.user }
-          });
-          store.writeQuery({
-            query: routes,
-            data: { routes: login.routes }
-          });
-        }
+        // update: (store, { data: { login } }) => {
+        //   store.writeQuery({
+        //     query: initialStatus,
+        //     data: { initialStatus: login }
+        //   });
+        //   store.writeQuery({
+        //     query: loggedUser,
+        //     data: { loggedUser: login.user }
+        //   });
+        //   store.writeQuery({
+        //     query: routes,
+        //     data: { routes: login.routes }
+        //   });
+        // }
       })
       .then(({ data }) => {
         const { login } = data;

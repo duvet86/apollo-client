@@ -10,7 +10,7 @@ class SideBarContainer extends Component {
     super(props);
     this.state = {
       searchTerm: "",
-      currentlyDisplayedLinks: props.routes
+      currentlyDisplayedLinks: props.menu
     };
 
     this._handleChange = this._handleChange.bind(this);
@@ -24,38 +24,38 @@ class SideBarContainer extends Component {
         searchTerm={this.state.searchTerm}
         handleChange={this._handleChange}
         handleClick={this._handleClick}
-        {...this.props}
+        inputRef={input => this.searchInput = input}
       />
     );
   }
 
   _handleChange(e) {
-    const { routes } = this.props;
+    const { menu } = this.props;
     this.setState({
       searchTerm: e.target.value,
-      currentlyDisplayedLinks: routes.filter(route => {
-        return route.label.includes(e.target.value);
-      })
+      currentlyDisplayedLinks: menu.filter(route =>
+        route.label.toLowerCase().includes(e.target.value)
+      )
     });
   }
 
   _handleClick() {
-    const { routes } = this.props;
+    const { menu } = this.props;
     this.setState({
       searchTerm: "",
-      currentlyDisplayedLinks: routes
+      currentlyDisplayedLinks: menu
     });
+    this.searchInput.focus();
   }
 }
 
 SideBarContainer.propTypes = {
-  routes: PropTypes.arrayOf(
+  menu: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      locationPath: PropTypes.string.isRequired,
+      location: PropTypes.string,
       label: PropTypes.string.isRequired,
-      componentName: PropTypes.string.isRequired,
-      isSideBar: PropTypes.bool
+      order: PropTypes.number.isRequired
     })
   )
 };

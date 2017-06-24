@@ -1,52 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Grid, Row } from "react-bootstrap";
 
-import withLoading from "lib/withLoading";
-import NavBar from "components/navigation/NavBar";
-import SideBarContainer from "components/sidebar/SideBarContainer";
-import BodyContainer from "components/app/BodyContainer";
+import NavBarWithData from "components/navbar/NavBarWithData";
+import SideBarWithData from "components/sidebar/SideBarWithData";
+import PageBodyWithData from "components/pageBody/PageBodyWithData";
 
-const App = ({ isLoading, user, routes, sideBarRoutes }) => (
+const App = () => (
   <div>
-    <NavBar user={user} />
+    <NavBarWithData />
     <Grid fluid>
       <Row>
-        <SideBarContainer routes={sideBarRoutes} />
-        <BodyContainer routes={routes} />
+        <SideBarWithData />
+        <PageBodyWithData />
       </Row>
     </Grid>
   </div>
 );
 
-App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    jwtToken: PropTypes.shape({
-      token: PropTypes.string.isRequired,
-      created: PropTypes.number.isRequired
-    })
-  }),
-  routes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      locationPath: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      componentName: PropTypes.string.isRequired,
-      isSideBar: PropTypes.bool
-    })
-  ),
-  sideBarRoutes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      locationPath: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      componentName: PropTypes.string.isRequired,
-      isSideBar: PropTypes.bool
-    })
-  )
-};
-
-export default withLoading(App);
+export default App;

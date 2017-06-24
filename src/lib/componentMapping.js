@@ -1,23 +1,15 @@
 import asyncComponent from "lib/asyncComponent";
 
-const asyncDashBoard = asyncComponent(() =>
+const dashBoard = asyncComponent(() =>
   import("components/navigation/DashBoard")
 );
-const asyncChannelsListContainer = asyncComponent(() =>
+const channelsList = asyncComponent(() =>
   import("components/channelList/ChannelsListContainer")
 );
-const asyncPageBuilderContainer = asyncComponent(() =>
+const pageBuilder = asyncComponent(() =>
   import("components/pageBuilder/PageBuilderContainer")
 );
-const asyncSettings = asyncComponent(() =>
-  import("components/navigation/Settings")
-);
-const asyncHelp = asyncComponent(() => import("components/navigation/Help"));
+const settings = asyncComponent(() => import("components/navigation/Settings"));
+const help = asyncComponent(() => import("components/navigation/Help"));
 
-export {
-  asyncDashBoard,
-  asyncChannelsListContainer,
-  asyncPageBuilderContainer,
-  asyncSettings,
-  asyncHelp
-};
+export { dashBoard, channelsList, pageBuilder, settings, help };
