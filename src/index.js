@@ -8,13 +8,15 @@ import { createStore } from "redux";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter, Switch } from "react-router-dom";
 
+import reducer from "reducers";
 import asyncComponent from "lib/asyncComponent";
 import apolloClient from "lib/apolloClient";
 import registerServiceWorker from "lib/registerServiceWorker";
-import reducer from "reducers";
 
-import AuthenticatedApp from "components/app/AuthenticatedApp";
-import { UnauthenticatedRoute } from "components/routes/CustomRoutes";
+import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
+import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
+import NotFoundRoute from "components/routes/NotFoundRoute";
+import App from "components/app/App";
 
 const store = createStore(reducer);
 
@@ -29,7 +31,8 @@ render(
             import("components/login/LoginContainer")
           )}
         />
-        <AuthenticatedApp />
+        <AuthenticatedRoute path="/:appKey" component={App} />
+        <NotFoundRoute />
       </Switch>
     </BrowserRouter>
   </ApolloProvider>,

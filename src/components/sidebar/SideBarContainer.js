@@ -2,6 +2,7 @@ import "components/sidebar/css/searchBox.css";
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import withLoading from "lib/withLoading";
 import SideBar from "components/sidebar/SideBar";
 
@@ -20,6 +21,7 @@ class SideBarContainer extends Component {
   render() {
     return (
       <SideBar
+        appKey={this.props.appKey}
         currentlyDisplayedLinks={this.state.currentlyDisplayedLinks}
         searchTerm={this.state.searchTerm}
         handleChange={this._handleChange}
@@ -50,6 +52,7 @@ class SideBarContainer extends Component {
 }
 
 SideBarContainer.propTypes = {
+  appKey: PropTypes.string.isRequired,
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

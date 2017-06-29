@@ -7,26 +7,39 @@ import { Nav } from "react-bootstrap";
 import NavItemLink from "components/core/NavItemLink";
 import NavItemCollapsible from "components/core/NavItemCollapsible";
 
-const LinkList = ({ currentlyDisplayedLinks }) => {
-  function createMenu(links) {
-    return links.map(({ id, location, label, children }) => {
-      if (location) {
-        return <NavItemLink key={id} exact path={location} label={label} />;
-      }
-      return children.children
-        ? createMenu(children.children)
-        : <NavItemCollapsible key={id} label={label} children={children} />;
-    });
-  }
+function createMenu(links, appKey) {
+  return links.map(({ id, location, label, children }) => {
+    if (location) {
+      return (
+        <NavItemLink
+          key={id}
+          exact
+          path={`/${appKey}${location}`}
+          label={label}
+        />
+      );
+    }
+    return children.children
+      ? createMenu(children.children, appKey)
+      : <NavItemCollapsible
+          key={id}
+          appKey={appKey}
+          label={label}
+          children={children}
+        />;
+  });
+}
 
+const LinkList = ({ appKey, currentlyDisplayedLinks }) => {
   return (
     <Nav className="nav-sidebar">
-      {createMenu(currentlyDisplayedLinks)}
+      {createMenu(currentlyDisplayedLinks, appKey)}
     </Nav>
   );
 };
 
 LinkList.propTypes = {
+  appKey: PropTypes.string.isRequired,
   currentlyDisplayedLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

@@ -1,13 +1,30 @@
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 
-import { loggedUser } from "components/navbar/graphqlQueries";
+import {
+  loggedUserQuery,
+  appLabelQuery
+} from "components/navbar/graphqlQueries";
 import NavBar from "components/navbar/NavBar";
 
-export default graphql(loggedUser, {
+const loggedUserOptions = {
   props: ({ ownProps, data: { loading, error, loggedUser } }) => ({
     isLoading: loading,
     user: loggedUser,
     error
   })
-})(NavBar);
+};
 
+const appKeyOptions = {
+  options: ({ appKey }) => ({
+    variables: { appKey: appKey }
+  }),
+  props: ({ ownProps, data: { loading, error, applicationByAppKey } }) => ({
+    appLabel: applicationByAppKey && applicationByAppKey.label,
+    error
+  })
+};
+
+export default compose(
+  graphql(loggedUserQuery, loggedUserOptions),
+  graphql(appLabelQuery, appKeyOptions)
+)(NavBar);

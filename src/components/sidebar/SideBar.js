@@ -8,6 +8,7 @@ import SearchBox from "components/sidebar/SearchBox";
 import LinkList from "components/sidebar/LinkList";
 
 const SideBar = ({
+  appKey,
   currentlyDisplayedLinks,
   searchTerm,
   handleChange,
@@ -21,11 +22,15 @@ const SideBar = ({
       handleClick={handleClick}
       inputRef={inputRef}
     />
-    <LinkList currentlyDisplayedLinks={currentlyDisplayedLinks} />
+    <LinkList
+      appKey={appKey}
+      currentlyDisplayedLinks={currentlyDisplayedLinks}
+    />
   </Col>
 );
 
 SideBar.propTypes = {
+  appKey: PropTypes.string.isRequired,
   currentlyDisplayedLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

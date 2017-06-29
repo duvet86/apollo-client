@@ -11,7 +11,7 @@ const credentialsFragment = gql`
   }
 `;
 
-const loggedUser = gql`
+const loggedUserQuery = gql`
   query loggedUser {
     loggedUser {
       ...credentials
@@ -20,4 +20,12 @@ const loggedUser = gql`
   ${credentialsFragment}
 `;
 
-export { loggedUser };
+const appLabelQuery = gql`
+  query applicationByAppKey($appKey: String!) {
+    applicationByAppKey(appKey: $appKey) {
+      label
+    }
+  }
+`;
+
+export { loggedUserQuery, appLabelQuery };

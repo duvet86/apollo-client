@@ -17,7 +17,8 @@ class LoginContainer extends Component {
       password: "",
       errorMessage: "",
       isLoading: false,
-      isAuthenticated: false
+      isAuthenticated: false,
+      redirect: ""
     };
   }
 
@@ -42,7 +43,7 @@ class LoginContainer extends Component {
     return this.state.isAuthenticated
       ? <Redirect
           to={{
-            pathname: "/",
+            pathname: `/${this.state.redirect}`,
             state: { from: this.props.location }
           }}
         />
@@ -97,31 +98,22 @@ class LoginContainer extends Component {
         variables: {
           email,
           password
-        },
-        // update: (store, { data: { login } }) => {
-        //   store.writeQuery({
-        //     query: initialStatus,
-        //     data: { initialStatus: login }
-        //   });
-        //   store.writeQuery({
-        //     query: loggedUser,
-        //     data: { loggedUser: login.user }
-        //   });
-        //   store.writeQuery({
-        //     query: routes,
-        //     data: { routes: login.routes }
-        //   });
-        // }
+        }
       })
       .then(({ data }) => {
         const { login } = data;
         if (login.error) {
-          this.setState({ isLoading: false });
-          this.setState({ errorMessage: login.error });
+          this.setState({
+            isLoading: false,
+            errorMessage: login.error
+          });
         } else {
-          const { user: { jwtToken } } = login;
+          const { user: { jwtToken, role: { startApp: { key } } } } = login;
           setLocalStorageToken(jwtToken);
-          this.setState({ isAuthenticated: true });
+          this.setState({
+            isAuthenticated: true,
+            redirect: key
+          });
         }
       });
   };

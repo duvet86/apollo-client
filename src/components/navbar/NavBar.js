@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   Nav,
   Navbar,
@@ -9,15 +10,16 @@ import {
 } from "react-bootstrap";
 
 import withLoading from "lib/withLoading";
+
 import LogoutContainer from "components/logout/LogoutContainer";
 import LogoLink from "components/navigation/LogoLink";
 import NotificationBadge from "components/core/NotificationBadge";
 
-const NavBar = ({ user: { name } }) => (
+const NavBar = ({ user: { name }, appLabel }) => (
   <Navbar fluid fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
-        <LogoLink appName="My App" />
+        <LogoLink appName={appLabel} />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -54,5 +56,12 @@ const NavBar = ({ user: { name } }) => (
     </Navbar.Collapse>
   </Navbar>
 );
+
+NavBar.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired
+  }).isRequired,
+  appLabel: PropTypes.string.isRequired
+};
 
 export default withLoading(NavBar);

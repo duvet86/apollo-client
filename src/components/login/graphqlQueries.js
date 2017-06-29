@@ -9,6 +9,12 @@ const loginMutation = gql`
           token
           created
         }
+        role {
+          description
+          startApp {
+            key
+          }
+        }
       }
     }
   }

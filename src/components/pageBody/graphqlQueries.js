@@ -8,7 +8,7 @@ const routesInfoFragment = gql`
   }
 `;
 
-const routesByAppKey = gql`
+const routesByAppKeyQuery = gql`
   query routesByAppKey($appKey: String!) {
     routesByAppKey(appKey: $appKey) {
       ...routesInfo
@@ -17,4 +17,4 @@ const routesByAppKey = gql`
   ${routesInfoFragment}
 `;
 
-export { routesByAppKey };
+export { routesByAppKeyQuery };

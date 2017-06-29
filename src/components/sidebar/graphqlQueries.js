@@ -9,7 +9,7 @@ const childrenInfoFragment = gql`
   }
 `;
 
-const menuByAppKey = gql`
+const menuByAppKeyQuery = gql`
   query applicationByAppKey($appKey: String!) {
     applicationByAppKey(appKey: $appKey) {
       menu {
@@ -23,4 +23,4 @@ const menuByAppKey = gql`
   ${childrenInfoFragment}
 `;
 
-export { menuByAppKey };
+export { menuByAppKeyQuery };
