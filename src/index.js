@@ -15,6 +15,8 @@ import registerServiceWorker from "lib/registerServiceWorker";
 
 import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
+import RedirectToStartPageWithData
+  from "components/routes/RedirectToStartPageWithData";
 import NotFoundRoute from "components/routes/NotFoundRoute";
 import App from "components/app/App";
 
@@ -32,6 +34,7 @@ render(
           )}
         />
         <AuthenticatedRoute path="/:appKey" component={App} />
+        <RedirectToStartPageWithData from="/" />
         <NotFoundRoute />
       </Switch>
     </BrowserRouter>

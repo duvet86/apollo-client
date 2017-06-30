@@ -43,7 +43,7 @@ class LoginContainer extends Component {
     return this.state.isAuthenticated
       ? <Redirect
           to={{
-            pathname: `/${this.state.redirect}`,
+            pathname: this.state.redirect,
             state: { from: this.props.location }
           }}
         />
@@ -112,7 +112,7 @@ class LoginContainer extends Component {
           setLocalStorageToken(jwtToken);
           this.setState({
             isAuthenticated: true,
-            redirect: key
+            redirect: `/${key}`
           });
         }
       });

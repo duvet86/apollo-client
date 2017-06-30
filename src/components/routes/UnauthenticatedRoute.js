@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import { isUserAuthenticated } from "lib/authApi";
+
+import RedirectToStartPageWithData
+  from "components/routes/RedirectToStartPageWithData";
 
 const UnauthenticatedRoute = ({ component, ...props }) => (
   <Route
@@ -10,12 +13,7 @@ const UnauthenticatedRoute = ({ component, ...props }) => (
     render={props =>
       (!isUserAuthenticated()
         ? React.createElement(component, props)
-        : <Redirect
-            to={{
-              pathname: "/",
-              state: { from: props.location }
-            }}
-          />)}
+        : <RedirectToStartPageWithData location={props.location} />)}
   />
 );
 
