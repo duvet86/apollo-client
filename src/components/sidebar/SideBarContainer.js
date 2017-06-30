@@ -18,6 +18,14 @@ class SideBarContainer extends Component {
     this._handleClick = this._handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.currentlyDisplayedLinks !== nextProps.menu) {
+      this.setState({
+        currentlyDisplayedLinks: nextProps.menu
+      });
+    }
+  }
+
   render() {
     return (
       <SideBar

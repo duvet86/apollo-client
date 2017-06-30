@@ -1,21 +1,17 @@
+import "components/navbar/css/navBar.css";
+
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Nav,
-  Navbar,
-  NavDropdown,
-  MenuItem,
-  Glyphicon,
-  Label
-} from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, MenuItem, Label } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import withLoading from "lib/withLoading";
 
 import LogoutContainer from "components/logout/LogoutContainer";
 import LogoLink from "components/navigation/LogoLink";
-import NotificationBadge from "components/core/NotificationBadge";
+import UserBar from "components/navbar/UserBar";
 
-const NavBar = ({ user: { name }, appLabel }) => (
+const NavBar = ({ user: { name, role: { appList } }, appLabel }) => (
   <Navbar fluid fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -27,17 +23,9 @@ const NavBar = ({ user: { name }, appLabel }) => (
       <LogoutContainer />
       <Nav pullRight>
         <NavDropdown
-          style={{ width: "171px" }}
+          className="user-nav-dropdown"
           eventKey={3}
-          title={
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div>
-                <Glyphicon style={{ marginRight: "10px" }} glyph="user" />
-                {name}
-              </div>
-              <div><NotificationBadge warning>4</NotificationBadge></div>
-            </div>
-          }
+          title={<UserBar userName={name} />}
           id="user-nav"
           noCaret
         >
@@ -47,10 +35,12 @@ const NavBar = ({ user: { name }, appLabel }) => (
               !
             </Label>
           </MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={3.4}>Separated link</MenuItem>
+          {appList.map(({ label, key }, index) => (
+            <LinkContainer key={index} to={`/${key}`}>
+              <MenuItem>{label}</MenuItem>
+            </LinkContainer>
+          ))}
         </NavDropdown>
       </Nav>
     </Navbar.Collapse>

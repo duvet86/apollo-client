@@ -3,10 +3,11 @@ import { gql } from "react-apollo";
 const credentialsFragment = gql`
   fragment credentials on User {
     name
-    email
-    jwtToken {
-      token
-      created
+    role {
+      appList {
+        label
+        key
+      }
     }
   }
 `;
