@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import LoadingSpinner from "components/core/LoadingSpinner";
 import AnimateContent from "components/core/AnimateContent";
 
-export default function withLoading(WrappedComponent) {
+export default function withLoading(WrappedComponent, showSpinner = false) {
   return class extends Component {
     render() {
       const { isLoading, error } = this.props;
@@ -28,6 +28,9 @@ export default function withLoading(WrappedComponent) {
         );
       }
       if (isLoading) {
+        return null;
+      }
+      if (isLoading && showSpinner) {
         return <LoadingSpinner />;
       }
 

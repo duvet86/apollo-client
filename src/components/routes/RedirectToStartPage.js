@@ -6,6 +6,7 @@ import withLoading from "lib/withLoading";
 
 const RedirectToStartPage = ({ appKey, location }) => (
   <Redirect
+    from="/"
     to={{
       pathname: `/${appKey}`,
       state: { from: location }

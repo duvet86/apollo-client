@@ -7,6 +7,7 @@ const credentialsFragment = gql`
       appList {
         label
         key
+        icon
       }
     }
   }
@@ -21,12 +22,4 @@ const loggedUserQuery = gql`
   ${credentialsFragment}
 `;
 
-const appLabelQuery = gql`
-  query applicationByAppKey($appKey: String!) {
-    applicationByAppKey(appKey: $appKey) {
-      label
-    }
-  }
-`;
-
-export { loggedUserQuery, appLabelQuery };
+export { loggedUserQuery };

@@ -1,0 +1,8 @@
+.user-bar-contaner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-bar-contaner .user-icon {
+  margin-right: 10px;
+}

@@ -7,15 +7,24 @@ import withLoading from "lib/withLoading";
 import SideBar from "components/sidebar/SideBar";
 
 class SideBarContainer extends Component {
+  static propTypes = {
+    appKey: PropTypes.string.isRequired,
+    menu: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        location: PropTypes.string,
+        label: PropTypes.string.isRequired,
+        order: PropTypes.number.isRequired
+      })
+    )
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: "",
       currentlyDisplayedLinks: props.menu
     };
-
-    this._handleChange = this._handleChange.bind(this);
-    this._handleClick = this._handleClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,7 +48,7 @@ class SideBarContainer extends Component {
     );
   }
 
-  _handleChange(e) {
+  _handleChange = e => {
     const { menu } = this.props;
     this.setState({
       searchTerm: e.target.value,
@@ -47,28 +56,16 @@ class SideBarContainer extends Component {
         route.label.toLowerCase().includes(e.target.value)
       )
     });
-  }
+  };
 
-  _handleClick() {
+  _handleClick = () => {
     const { menu } = this.props;
     this.setState({
       searchTerm: "",
       currentlyDisplayedLinks: menu
     });
     this.searchInput.focus();
-  }
+  };
 }
-
-SideBarContainer.propTypes = {
-  appKey: PropTypes.string.isRequired,
-  menu: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      location: PropTypes.string,
-      label: PropTypes.string.isRequired,
-      order: PropTypes.number.isRequired
-    })
-  )
-};
 
 export default withLoading(SideBarContainer);

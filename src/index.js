@@ -17,8 +17,7 @@ import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
 import RedirectToStartPageWithData
   from "components/routes/RedirectToStartPageWithData";
-import NotFoundRoute from "components/routes/NotFoundRoute";
-import App from "components/app/App";
+import AppWithData from "components/app/AppWithData";
 
 const store = createStore(reducer);
 
@@ -33,9 +32,8 @@ render(
             import("components/login/LoginContainer")
           )}
         />
-        <AuthenticatedRoute path="/:appKey" component={App} />
-        <RedirectToStartPageWithData from="/" />
-        <NotFoundRoute />
+        <AuthenticatedRoute path="/:appKey" component={AppWithData} />
+        <RedirectToStartPageWithData />
       </Switch>
     </BrowserRouter>
   </ApolloProvider>,

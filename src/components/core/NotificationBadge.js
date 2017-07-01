@@ -1,4 +1,4 @@
-import "components/core/css/badge.css";
+import "components/core/css/notificationBadge.css";
 
 import React from "react";
 import PropTypes from "prop-types";

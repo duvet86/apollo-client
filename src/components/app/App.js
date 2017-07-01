@@ -6,24 +6,32 @@ import NavBarWithData from "components/navbar/NavBarWithData";
 import SideBarWithData from "components/sidebar/SideBarWithData";
 import PageBodyWithData from "components/pageBody/PageBodyWithData";
 
-const App = ({ match: { params: { appKey } } }) => (
+const App = ({ appList, currentAppLabel, currentAppKey }) => (
   <div>
-    <NavBarWithData appKey={appKey} />
+    <NavBarWithData
+      appList={appList}
+      appLabel={currentAppLabel}
+      appKey={currentAppKey}
+    />
     <Grid fluid>
       <Row>
-        <SideBarWithData appKey={appKey} />
-        <PageBodyWithData appKey={appKey} />
+        <SideBarWithData appKey={currentAppKey} />
+        <PageBodyWithData appKey={currentAppKey} />
       </Row>
     </Grid>
   </div>
 );
 
 App.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      appKey: PropTypes.string.isRequired
+  appList: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired
     }).isRequired
-  }).isRequired
+  ).isRequired,
+  currentAppLabel: PropTypes.string.isRequired,
+  currentAppKey: PropTypes.string.isRequired
 };
 
 export default App;
