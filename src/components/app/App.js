@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid, Row } from "react-bootstrap";
 
 import NavBarWithData from "components/navbar/NavBarWithData";
-import SideBarWithData from "components/sidebar/SideBarWithData";
 import PageBodyWithData from "components/pageBody/PageBodyWithData";
 
 const App = ({ appList, currentAppLabel, currentAppKey }) => (
@@ -15,7 +14,6 @@ const App = ({ appList, currentAppLabel, currentAppKey }) => (
     />
     <Grid fluid>
       <Row>
-        <SideBarWithData appKey={currentAppKey} />
         <PageBodyWithData appKey={currentAppKey} />
       </Row>
     </Grid>

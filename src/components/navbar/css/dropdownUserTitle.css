@@ -1,8 +1,8 @@
-.user-bar-contaner {
+.user-title-container {
   display: flex;
   justify-content: space-between;
 }
 
-.user-bar-contaner .user-icon {
+.user-title-container .user-icon {
   margin-right: 10px;
 }

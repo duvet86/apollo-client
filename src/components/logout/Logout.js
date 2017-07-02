@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Navbar, Button } from "react-bootstrap";
+import { MenuItem } from "react-bootstrap";
 
-const Logout = ({ handleClick }) => {
-  return (
-    <Navbar.Form pullRight>
-      <Button onClick={handleClick}>Logout</Button>
-    </Navbar.Form>
-  );
-};
+const Logout = ({ handleClick }) => (
+  <MenuItem onClick={handleClick}>
+    <i className="fa fa-sign-out" aria-hidden="true" />{" "}Logout
+  </MenuItem>
+);
 
 Logout.propTypes = {
   handleClick: PropTypes.func.isRequired

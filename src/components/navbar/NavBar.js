@@ -1,18 +1,15 @@
-import "components/navbar/css/navBar.css";
-
 import React from "react";
 import PropTypes from "prop-types";
-import { Nav, Navbar, NavDropdown, MenuItem } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 import withLoading from "lib/withLoading";
 
-import LogoutContainer from "components/logout/LogoutContainer";
+import SideBarWithData from "components/sidebar/SideBarWithData";
 import LogoLink from "components/navigation/LogoLink";
-import UserBar from "components/navbar/UserBar";
-import MenuItemNotification from "components/navbar/MenuItemNotification";
-import MenuItemApp from "components/navbar/MenuItemApp";
+import DropdownUser from "components/navbar/DropdownUser";
+import DropdownNotification from "components/navbar/DropdownNotification";
 
-const NavBar = ({ user: { name, role: { appList } }, appLabel }) => (
+const NavBar = ({ user: { name, role: { appList } }, appLabel, appKey }) => (
   <Navbar fluid fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -21,20 +18,10 @@ const NavBar = ({ user: { name, role: { appList } }, appLabel }) => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <LogoutContainer />
       <Nav pullRight>
-        <NavDropdown
-          className="user-nav-dropdown"
-          title={<UserBar userName={name} />}
-          id="user-nav"
-          noCaret
-        >
-          <MenuItemNotification />
-          <MenuItem divider />
-          {appList.map(({ label, key, icon }, index) => (
-            <MenuItemApp key={index} appKey={key} label={label} icon={icon} />
-          ))}
-        </NavDropdown>
+        <DropdownNotification />
+        <DropdownUser userName={name} appList={appList} />
+        <SideBarWithData appKey={appKey} />
       </Nav>
     </Navbar.Collapse>
   </Navbar>
@@ -45,6 +32,7 @@ NavBar.propTypes = {
     name: PropTypes.string.isRequired
   }).isRequired,
   appLabel: PropTypes.string.isRequired,
+  appKey: PropTypes.string.isRequired,
   appList: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

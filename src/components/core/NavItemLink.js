@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { NavItem } from "react-bootstrap";
 
 const NavItemLink = ({ path, label, ...props }) => (
-  <LinkContainer {...props} to={path}>
+  <LinkContainer className="sidebar-item-link" {...props} to={path}>
     <NavItem>
       <i className="fa fa-link" aria-hidden="true" />{" "}{label}
     </NavItem>

@@ -1,0 +1,8 @@
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+.badge-pulse {
+  animation: blinker 1.5s linear 5;
+  background-color: #f7be1e;
+}
