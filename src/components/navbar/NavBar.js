@@ -1,3 +1,5 @@
+import "components/navbar/css/navbar.css";
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Nav, Navbar } from "react-bootstrap";
@@ -8,9 +10,10 @@ import SideBarWithData from "components/sidebar/SideBarWithData";
 import LogoLink from "components/navigation/LogoLink";
 import DropdownUser from "components/navbar/DropdownUser";
 import DropdownNotification from "components/navbar/DropdownNotification";
+import DropdownApplicationList from "components/navbar/DropdownApplicationList";
 
 const NavBar = ({ user: { name, role: { appList } }, appLabel, appKey }) => (
-  <Navbar fluid fixedTop>
+  <Navbar fluid fixedTop collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
         <LogoLink appName={appLabel} />
@@ -20,7 +23,8 @@ const NavBar = ({ user: { name, role: { appList } }, appLabel, appKey }) => (
     <Navbar.Collapse>
       <Nav pullRight>
         <DropdownNotification />
-        <DropdownUser userName={name} appList={appList} />
+        <DropdownUser userName={name} appKey={appKey} />
+        <DropdownApplicationList appList={appList} />
         <SideBarWithData appKey={appKey} />
       </Nav>
     </Navbar.Collapse>

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import { Col } from "react-bootstrap";
 
+import asyncComponent from "lib/asyncComponent";
 import * as mapping from "lib/componentMapping";
 import withLoading from "lib/withLoading";
 
@@ -21,6 +22,20 @@ const PageBody = ({ routes }) => (
           component={mapping[component]}
         />
       ))}
+      <Route
+        exact
+        path="/:appKey/settings"
+        component={asyncComponent(() =>
+          import("components/staticPages/Settings")
+        )}
+      />
+      <Route
+        exact
+        path="/:appKey/profile"
+        component={asyncComponent(() =>
+          import("components/staticPages/Profile")
+        )}
+      />
       <NotFoundRoute />
     </Switch>
   </Col>

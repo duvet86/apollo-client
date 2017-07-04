@@ -1,0 +1,18 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { MenuItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
+const MenuItemProfile = ({ appKey, onSelect }) => (
+  <LinkContainer onSelect={onSelect} to={`/${appKey}/profile`}>
+    <MenuItem>
+      <i className="fa fa-user-o" aria-hidden="true" />{" "}Profile
+    </MenuItem>
+  </LinkContainer>
+);
+
+MenuItemProfile.propTypes = {
+  appKey: PropTypes.string.isRequired
+};
+
+export default MenuItemProfile;

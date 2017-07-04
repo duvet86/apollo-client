@@ -9,7 +9,6 @@ const channelsList = asyncComponent(() =>
 const pageBuilder = asyncComponent(() =>
   import("components/pageBuilder/PageBuilderContainer")
 );
-const settings = asyncComponent(() => import("components/navigation/Settings"));
 const help = asyncComponent(() => import("components/navigation/Help"));
 
-export { dashBoard, channelsList, pageBuilder, settings, help };
+export { dashBoard, channelsList, pageBuilder, help };

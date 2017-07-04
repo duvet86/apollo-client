@@ -1,8 +1,8 @@
-.user-title-container {
+.dropdown-title-container {
   display: flex;
   justify-content: space-between;
 }
 
-.user-title-container .user-icon {
+.dropdown-title-container span.glyphicon {
   margin-right: 10px;
 }
