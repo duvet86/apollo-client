@@ -1,18 +1,21 @@
 import { graphql } from "react-apollo";
 
-import { startAppByLoggedUserQuery } from "components/routes/graphqlQueries";
+import { getLocalStorageUserId } from "lib/localStorageAPI";
+import { startAppByUserIdQuery } from "components/routes/graphqlQueries";
 import RedirectToStartPage from "components/routes/RedirectToStartPage";
 
-const startAppByLoggedUserQueryOptions = {
-  props: ({ ownProps, data: { loading, error, startAppByLoggedUser } }) => ({
+const queryOptions = {
+  options: () => ({
+    variables: { id: getLocalStorageUserId() }
+  }),
+  props: ({ ownProps, data: { loading, error, startAppByUserId } }) => ({
     ...ownProps,
     isLoading: loading,
-    appKey: startAppByLoggedUser && startAppByLoggedUser.key,
+    appKey: startAppByUserId && startAppByUserId.key,
     error
   })
 };
 
-export default graphql(
-  startAppByLoggedUserQuery,
-  startAppByLoggedUserQueryOptions
-)(RedirectToStartPage);
+export default graphql(startAppByUserIdQuery, queryOptions)(
+  RedirectToStartPage
+);

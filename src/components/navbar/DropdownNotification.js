@@ -3,12 +3,11 @@ import "components/navbar/css/dropownNotification.css";
 import React from "react";
 import { NavDropdown, MenuItem, Badge } from "react-bootstrap";
 
-import DropdownNotificationTitle
-  from "components/navbar/DropdownNotificationTitle";
+import DropdownTitle from "components/navbar/DropdownTitle";
 
 const DropdownNotification = () => (
   <NavDropdown
-    title={<DropdownNotificationTitle />}
+    title={<DropdownTitle className="bell-icon animated" glyph="bell" />}
     id="notification-nav"
     noCaret
   >

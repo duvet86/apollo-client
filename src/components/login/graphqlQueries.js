@@ -5,9 +5,10 @@ const loginMutation = gql`
     login(email: $email, password: $password) {
       error
       user {
+        id
         jwtToken {
           token
-          created
+          createdAt
         }
         role {
           description

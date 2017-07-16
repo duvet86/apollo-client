@@ -1,15 +1,19 @@
 import { graphql } from "react-apollo";
 
-import { loggedUserQuery } from "components/navbar/graphqlQueries";
+import { getLocalStorageUserId } from "lib/localStorageAPI";
+import { userByIdQuery } from "components/navbar/graphqlQueries";
 import NavBar from "components/navbar/NavBar";
 
-const loggedUserOptions = {
-  props: ({ ownProps, data: { loading, error, loggedUser } }) => ({
+const queryOptions = {
+  options: () => ({
+    variables: { id: getLocalStorageUserId() }
+  }),
+  props: ({ ownProps, data: { loading, error, userById } }) => ({
     ...ownProps,
     isLoading: loading,
-    user: loggedUser,
+    user: userById,
     error
   })
 };
 
-export default graphql(loggedUserQuery, loggedUserOptions)(NavBar);
+export default graphql(userByIdQuery, queryOptions)(NavBar);

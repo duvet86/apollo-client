@@ -15,8 +15,7 @@ import registerServiceWorker from "lib/registerServiceWorker";
 
 import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
-import RedirectToStartPageWithData
-  from "components/routes/RedirectToStartPageWithData";
+import RedirectToStartPageWithData from "components/routes/RedirectToStartPageWithData";
 import AppWithData from "components/app/AppWithData";
 
 const store = createStore(reducer);
@@ -33,7 +32,7 @@ render(
           )}
         />
         <AuthenticatedRoute path="/:appKey" component={AppWithData} />
-        <RedirectToStartPageWithData />
+        <AuthenticatedRoute component={RedirectToStartPageWithData} />
       </Switch>
     </BrowserRouter>
   </ApolloProvider>,

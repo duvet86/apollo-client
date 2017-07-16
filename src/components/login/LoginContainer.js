@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { removeLoading } from "actions/loading";
-import { setLocalStorageToken } from "lib/localStorageAPI";
+import {
+  setLocalStorageToken,
+  setLocalStorageUserId
+} from "lib/localStorageAPI";
 import { loginMutation } from "components/login/graphqlQueries";
 import Login from "components/login/Login";
 
@@ -108,7 +111,8 @@ class LoginContainer extends Component {
             errorMessage: login.error
           });
         } else {
-          const { user: { jwtToken, role: { startApp: { key } } } } = login;
+          const { user: { id, jwtToken, role: { startApp: { key } } } } = login;
+          setLocalStorageUserId(id);
           setLocalStorageToken(jwtToken);
           this.setState({
             isAuthenticated: true,

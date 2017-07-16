@@ -11,4 +11,6 @@ const applicationListQueryOptions = {
   })
 };
 
-export default graphql(applicationListQuery, applicationListQueryOptions)(AppContainer);
+export default graphql(applicationListQuery, applicationListQueryOptions)(
+  AppContainer
+);

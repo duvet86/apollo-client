@@ -5,7 +5,7 @@ import PageBody from "components/pageBody/PageBody";
 
 export default graphql(routesByAppKeyQuery, {
   options: ({ appKey }) => ({
-    variables: { appKey: appKey }
+    variables: { appKey }
   }),
   props: ({ ownProps, data: { loading, error, routesByAppKey } }) => ({
     isLoading: loading,

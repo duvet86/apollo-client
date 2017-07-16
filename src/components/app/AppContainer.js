@@ -6,12 +6,8 @@ import withLoading from "lib/withLoading";
 import App from "components/app/App";
 import NotFoundRoute from "components/routes/NotFoundRoute";
 
-function getAppByKey(applicationList, appKey) {
-  return applicationList.filter(item => item.key === appKey)[0];
-}
-
 const AppContainer = ({ applicationList, match: { params: { appKey } } }) => {
-  const app = getAppByKey(applicationList, appKey);
+  const app = applicationList.filter(item => item.key === appKey)[0];
   if (app) {
     return (
       <App

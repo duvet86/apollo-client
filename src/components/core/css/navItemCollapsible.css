@@ -23,4 +23,10 @@
 
 .nav-item-collapsible .nav-sidebar {
     margin-bottom: 0;
+    width: 100%;
+}
+
+.nav-item-collapsible .panel {
+    box-shadow: none;
+    background-color: #f8f8f8;
 }

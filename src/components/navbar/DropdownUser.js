@@ -1,27 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavDropdown, MenuItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import LogoutContainer from "components/logout/LogoutContainer";
-import DropdownUserTitle from "components/navbar/DropdownUserTitle";
-import MenuItemApp from "components/navbar/MenuItemApp";
+import DropdownTitle from "components/navbar/DropdownTitle";
 
-const DropdownUser = ({ userName, appList }) => (
+const DropdownUser = ({ userName, appKey }) => (
   <NavDropdown
-    title={<DropdownUserTitle userName={userName} />}
+    title={<DropdownTitle className="user-icon" glyph="user" />}
     id="user-nav"
     noCaret
   >
-    {appList.map(({ label, key, icon }, index) => (
-      <MenuItemApp key={index} appKey={key} label={label} icon={icon} />
-    ))}
-    <MenuItem divider />
-    <MenuItem>
-      <i className="fa fa-user-o" aria-hidden="true" />{" "}Profile
-    </MenuItem>
-    <MenuItem>
-      <i className="fa fa-cog" aria-hidden="true" />{" "}Settings
-    </MenuItem>
+    <LinkContainer to={`/${appKey}/profile`}>
+      <MenuItem>
+        <i className="fa fa-user-o" aria-hidden="true" />{" "}{userName}
+      </MenuItem>
+    </LinkContainer>
+    <LinkContainer to={`/${appKey}/settings`}>
+      <MenuItem>
+        <i className="fa fa-cog" aria-hidden="true" />{" "}Settings
+      </MenuItem>
+    </LinkContainer>
     <MenuItem divider />
     <LogoutContainer />
   </NavDropdown>
@@ -29,13 +29,7 @@ const DropdownUser = ({ userName, appList }) => (
 
 DropdownUser.propTypes = {
   userName: PropTypes.string.isRequired,
-  appList: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      key: PropTypes.string.isRequired,
-      icon: PropTypes.string.isRequired
-    })
-  )
+  appKey: PropTypes.string.isRequired
 };
 
 export default DropdownUser;

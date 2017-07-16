@@ -20,8 +20,8 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
             <h3 className="text-danger">
               <i className="fa fa-exclamation-triangle" aria-hidden="true" />
               {" "}
-              {error.message
-                ? error.message
+              {error
+                ? JSON.stringify(error)
                 : "Error! Component failed to load."}
             </h3>
           </Col>

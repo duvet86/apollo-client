@@ -13,13 +13,13 @@ const credentialsFragment = gql`
   }
 `;
 
-const loggedUserQuery = gql`
-  query loggedUser {
-    loggedUser {
+const userByIdQuery = gql`
+  query userById($id: ID!) {
+    userById(id: $id) {
       ...credentials
     }
   }
   ${credentialsFragment}
 `;
 
-export { loggedUserQuery };
+export { userByIdQuery };
