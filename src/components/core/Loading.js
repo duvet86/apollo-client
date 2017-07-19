@@ -7,7 +7,7 @@ const Loading = ({ isLoading, error, pastDelay }) => {
   if (error) {
     return (
       <Well>
-        {error.message ? error.message : "Error! Component failed to load."}
+        {error}
       </Well>
     );
   }

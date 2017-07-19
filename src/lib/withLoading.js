@@ -18,8 +18,10 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
             mdOffset={2}
           >
             <h3 className="text-danger">
-              <i className="fa fa-exclamation-triangle" aria-hidden="true" />
-              {" "}
+              <i
+                className="fa fa-exclamation-triangle"
+                aria-hidden="true"
+              />{" "}
               {error
                 ? JSON.stringify(error)
                 : "Error! Component failed to load."}
@@ -28,10 +30,7 @@ export default function withLoading(WrappedComponent, showSpinner = false) {
         );
       }
       if (isLoading) {
-        return null;
-      }
-      if (isLoading && showSpinner) {
-        return <LoadingSpinner />;
+        return showSpinner ? <LoadingSpinner /> : null;
       }
 
       return (

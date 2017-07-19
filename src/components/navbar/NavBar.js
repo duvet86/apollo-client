@@ -16,7 +16,7 @@ const NavBar = ({ user: { name, role: { appList } }, appLabel, appKey }) => (
   <Navbar fluid fixedTop collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <LogoLink appName={appLabel} />
+        <LogoLink appKey={appKey} appName={appLabel} />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>

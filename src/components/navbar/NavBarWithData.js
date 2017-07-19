@@ -1,12 +1,12 @@
 import { graphql } from "react-apollo";
 
-import { getLocalStorageUserId } from "lib/localStorageAPI";
+import { getUserIdFromToken } from "lib/localStorageAPI";
 import { userByIdQuery } from "components/navbar/graphqlQueries";
 import NavBar from "components/navbar/NavBar";
 
 const queryOptions = {
   options: () => ({
-    variables: { id: getLocalStorageUserId() }
+    variables: { id: getUserIdFromToken() }
   }),
   props: ({ ownProps, data: { loading, error, userById } }) => ({
     ...ownProps,

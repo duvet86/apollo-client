@@ -6,15 +6,19 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
-const LogoLink = ({ appName }) => (
-  <Link className="navbar-brand" to="/">
-    <div><Image src={logo} className="app-logo pull-right" responsive /></div>
-    <div>{appName}</div>
-  </Link>
-);
+const LogoLink = ({ appKey, appName }) =>
+  <Link className="navbar-brand" to={`/${appKey}`}>
+    <div>
+      <Image src={logo} className="app-logo pull-right" responsive />
+    </div>
+    <div>
+      {appName}
+    </div>
+  </Link>;
 
 LogoLink.propTypes = {
-  appName: PropTypes.string.isRequired
+  appName: PropTypes.string.isRequired,
+  appKey: PropTypes.string.isRequired
 };
 
 export default LogoLink;

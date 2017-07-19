@@ -63,4 +63,4 @@ Login.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
 
-export default withLoading(Login);
+export default withLoading(Login, true);
