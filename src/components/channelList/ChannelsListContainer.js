@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { graphql, compose } from "react-apollo";
 
 import withLoading from "lib/withLoading";
 
 import ChannelsList from "components/channelList/ChannelsList";
 import AddChannelContainer from "components/channelList/AddChannelContainer";
-import {
-  channelsListQuery,
-  newChannelSubscription,
-  removeChannelMutation,
-  removedChannelSubscription
-} from "components/channelList/graphqlQueries";
+import { channelsListQuery } from "components/channelList/graphqlQueries";
 
 class ChannelsListContainer extends Component {
   componentDidMount() {
@@ -67,44 +61,4 @@ ChannelsListContainer.propTypes = {
   channels: PropTypes.array
 };
 
-const makeQuery = compose(
-  graphql(removeChannelMutation, { name: "removeChannelMutation" }),
-  graphql(channelsListQuery, {
-    props: ({
-      ownProps,
-      data: { loading, channels, error, subscribeToMore }
-    }) => ({
-      isLoading: loading,
-      channels,
-      error,
-      subscribeToNewChannels: () =>
-        subscribeToMore({
-          document: newChannelSubscription,
-          updateQuery: (prev, { subscriptionData: { data } }) => {
-            if (data == null) {
-              return prev;
-            }
-
-            return Object.assign({}, prev, {
-              channels: [...prev.channels, data.channelAdded]
-            });
-          }
-        }),
-      subscribeToRemovedChannels: () =>
-        subscribeToMore({
-          document: removedChannelSubscription,
-          updateQuery: (prev, { subscriptionData: { data } }) => {
-            if (data == null) {
-              return prev;
-            }
-
-            return Object.assign({}, prev, {
-              channels: prev.channels.filter(c => c.id !== data.channelRemoved)
-            });
-          }
-        })
-    })
-  })
-);
-
-export default makeQuery(withLoading(ChannelsListContainer));
+export default withLoading(ChannelsListContainer);

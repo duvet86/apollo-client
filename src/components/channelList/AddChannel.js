@@ -9,13 +9,11 @@ import {
 } from "react-bootstrap";
 
 const AddChannel = ({ handleKeyUp }) => {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
   return (
-    <Form
-      horizontal
-      onSubmit={evt => {
-        evt.preventDefault();
-      }}
-    >
+    <Form horizontal onSubmit={handleSubmit}>
       <FormGroup>
         <Col componentClass={ControlLabel} md={2}>
           Add New Channel

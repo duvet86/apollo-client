@@ -4,16 +4,23 @@ import { ListGroup } from "react-bootstrap";
 import Channel from "components/channelList/Channel";
 
 const ChannelsList = ({ channels, handleDeleteChannel }) => {
-  const items = channels.map(ch => (
-    <Channel
-      key={ch.id}
-      id={ch.id}
-      name={ch.name}
-      handleDeleteChannel={handleDeleteChannel}
-    />
-  ));
+  const items = channels.map(ch => {
+    const boundEvent = () => handleDeleteChannel(ch.id);
+    return (
+      <Channel
+        key={ch.id}
+        id={ch.id}
+        name={ch.name}
+        handleDeleteChannel={boundEvent}
+      />
+    );
+  });
 
-  return <ListGroup>{items}</ListGroup>;
+  return (
+    <ListGroup>
+      {items}
+    </ListGroup>
+  );
 };
 
 ChannelsList.propTypes = {

@@ -2,23 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ListGroupItem, Button } from "react-bootstrap";
 
-const Channel = ({ id, name, handleDeleteChannel }) =>
+const Application = ({ id, label, handleArchiveApp }) =>
   <ListGroupItem>
-    {name}{" "}
+    {label}{" "}
     <Button
       bsStyle="warning"
       bsSize="xs"
       className="pull-right"
-      onClick={handleDeleteChannel}
+      onClick={handleArchiveApp}
     >
       Delete
     </Button>
   </ListGroupItem>;
 
-Channel.propTypes = {
+Application.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  handleDeleteChannel: PropTypes.func.isRequired
+  label: PropTypes.string.isRequired,
+  handleArchiveApp: PropTypes.func.isRequired
 };
 
-export default Channel;
+export default Application;
