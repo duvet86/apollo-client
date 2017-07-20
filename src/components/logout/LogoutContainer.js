@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { setLoading } from "actions/loading";
 import { deleteLocalStorageToken } from "lib/localStorageAPI";
 
 import Logout from "components/logout/Logout";
@@ -27,12 +25,9 @@ class LogoutContainer extends Component {
   }
 
   _handleLogout = () => {
-    const { dispatch } = this.props;
-
-    dispatch(setLoading());
     deleteLocalStorageToken();
     this.setState({ hasLoggedOut: true });
   };
 }
 
-export default connect()(LogoutContainer);
+export default LogoutContainer;

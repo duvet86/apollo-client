@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { removeLoading } from "actions/loading";
 import { setLocalStorageToken } from "lib/localStorageAPI";
 import { loginMutation } from "components/login/graphqlQueries";
 import Login from "components/login/Login";
@@ -20,11 +18,6 @@ class LoginContainer extends Component {
       isAuthenticated: false,
       redirect: ""
     };
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(removeLoading());
   }
 
   componentWillMount() {
@@ -123,4 +116,4 @@ LoginContainer.propTypes = {
   mutate: PropTypes.func.isRequired
 };
 
-export default connect()(graphql(loginMutation)(LoginContainer));
+export default graphql(loginMutation)(LoginContainer);

@@ -1,14 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "font-awesome/css/font-awesome.css";
+import "font-awesome/css/font-awesome.min.css";
 import "css/index.css";
 
 import React from "react";
 import { render } from "react-dom";
-import { createStore } from "redux";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter, Switch } from "react-router-dom";
 
-import reducer from "reducers";
 import asyncComponent from "lib/asyncComponent";
 import apolloClient from "lib/apolloClient";
 import registerServiceWorker from "lib/registerServiceWorker";
@@ -18,10 +16,8 @@ import UnauthenticatedRoute from "components/routes/UnauthenticatedRoute";
 import RedirectToStartPageWithData from "components/routes/RedirectToStartPageWithData";
 import AppWithData from "components/app/AppWithData";
 
-const store = createStore(reducer);
-
 render(
-  <ApolloProvider client={apolloClient} store={store}>
+  <ApolloProvider client={apolloClient}>
     <BrowserRouter>
       <Switch>
         <UnauthenticatedRoute
