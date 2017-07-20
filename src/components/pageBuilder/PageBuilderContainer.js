@@ -9,15 +9,53 @@ export default class PageBuilderContainer extends Component {
       components: [
         {
           id: 1,
-          name: "Glass"
+          name: "Button",
+          icon: "plus-square-o"
         },
         {
           id: 2,
-          name: "Banana"
+          name: "Checkbox Group",
+          icon: "check-square-o"
         },
         {
           id: 3,
-          name: "Paper"
+          name: "Date Field",
+          icon: "calendar"
+        },
+        {
+          id: 4,
+          name: "File Upload",
+          icon: "upload"
+        },
+        {
+          id: 5,
+          name: "Header",
+          icon: "header"
+        },
+        {
+          id: 6,
+          name: "Paragraph",
+          icon: "paragraph"
+        },
+        {
+          id: 7,
+          name: "Radio Group",
+          icon: "dot-circle-o"
+        },
+        {
+          id: 8,
+          name: "Select",
+          icon: "caret-square-o-down"
+        },
+        {
+          id: 9,
+          name: "Text Input",
+          icon: "pencil-square-o"
+        },
+        {
+          id: 10,
+          name: "Text Area",
+          icon: "align-justify"
         }
       ]
     };

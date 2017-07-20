@@ -5,30 +5,23 @@ import { DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 
 import PageHeader from "components/core/PageHeader";
-import PBComponent from "components/pageBuilder/PBComponent";
+import PBComponentList from "components/pageBuilder/PBComponentList";
 import PBDroppableArea from "components/pageBuilder/PBDroppableArea";
 
-const PageBuilder = ({ components }) => (
+const PageBuilder = ({ components }) =>
   <div>
     <PageHeader>Page Builder</PageHeader>
     <DragDropContextProvider backend={HTML5Backend}>
       <Row>
-        <Col md={2}>
-          {components.map(component => (
-            <PBComponent
-              key={component.id}
-              id={component.id}
-              name={component.name}
-            />
-          ))}
+        <Col md={3}>
+          <PBComponentList components={components} />
         </Col>
-        <Col md={10}>
+        <Col md={9}>
           <PBDroppableArea />
         </Col>
       </Row>
     </DragDropContextProvider>
-  </div>
-);
+  </div>;
 
 PageBuilder.propTypes = {
   components: PropTypes.array.isRequired

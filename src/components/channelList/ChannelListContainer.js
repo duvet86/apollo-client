@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 import withLoading from "lib/withLoading";
 
-import ChannelsList from "components/channelList/ChannelsList";
+import ChannelList from "components/channelList/ChannelList";
 import AddChannelContainer from "components/channelList/AddChannelContainer";
 import { channelsListQuery } from "components/channelList/graphqlQueries";
 
-class ChannelsListContainer extends Component {
+class ChannelListContainer extends Component {
   componentDidMount() {
     this.props.subscribeToNewChannels();
     this.props.subscribeToRemovedChannels();
@@ -18,7 +18,7 @@ class ChannelsListContainer extends Component {
     return (
       <div>
         <AddChannelContainer />
-        <ChannelsList
+        <ChannelList
           channels={channels}
           handleDeleteChannel={this._handleDeleteChannel}
         />
@@ -55,10 +55,10 @@ class ChannelsListContainer extends Component {
   };
 }
 
-ChannelsListContainer.propTypes = {
+ChannelListContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   channels: PropTypes.array
 };
 
-export default withLoading(ChannelsListContainer);
+export default withLoading(ChannelListContainer);

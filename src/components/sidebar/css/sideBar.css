@@ -1,10 +1,3 @@
-@media (min-width: 992px) {
-  .sidebar {
-    /* To prevent sidebar to move when scrollbar appears */
-    width: 215px;
-  }
-}
-
 @media (min-width: 768px) {
   .sidebar {
     padding: 0;

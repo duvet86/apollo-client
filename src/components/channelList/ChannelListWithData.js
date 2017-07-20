@@ -1,6 +1,6 @@
 import { graphql, compose } from "react-apollo";
 
-import ChannelContainer from "components/channelList/ChannelContainer";
+import ChannelListContainer from "components/channelList/ChannelListContainer";
 import {
   channelsListQuery,
   newChannelSubscription,
@@ -50,4 +50,4 @@ const makeQuery = compose(
   graphql(channelsListQuery, channelsListQueryOptions)
 );
 
-export default makeQuery(ChannelContainer);
+export default makeQuery(ChannelListContainer);
