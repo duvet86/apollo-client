@@ -1,6 +1,9 @@
 import { combineReducers } from "redux";
-import loading from "reducers/loading";
+
+import apolloClient from "lib/apolloClient";
+import components from "reducers/components";
 
 export default combineReducers({
-  loading
+  components,
+  apollo: apolloClient.reducer()
 });

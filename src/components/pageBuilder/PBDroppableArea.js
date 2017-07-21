@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { DropTarget } from "react-dnd";
 
+import { componentMapping } from "lib/test";
 import ItemTypes from "components/pageBuilder/ItemTypes";
 
 const style = {
   border: "1px dashed #ddd",
   padding: "1rem",
-  textAlign: "center",
   minHeight: "411px",
-  position: "relative",
-  margin: "0 auto"
+  position: "relative"
 };
 
 const textStyle = {
@@ -27,7 +28,13 @@ const boxTarget = {
   }
 };
 
-const PBDroppableArea = ({ canDrop, isOver, connectDropTarget }) => {
+const PBDroppableArea = ({
+  canDrop,
+  isOver,
+  connectDropTarget,
+  components
+}) => {
+  console.log(components);
   const isActive = canDrop && isOver;
 
   let backgroundColor = "#f8f8f8";
@@ -37,11 +44,24 @@ const PBDroppableArea = ({ canDrop, isOver, connectDropTarget }) => {
     backgroundColor = "darkkhaki";
   }
 
+  let componentList;
+  if (components.lenght === 0) {
+    componentList = (
+      <div style={textStyle}>
+        {isActive ? "Release to drop" : "Drag a Component here"}
+      </div>
+    );
+  } else {
+    componentList = components.map((c, index) =>
+      <div key={index}>
+        {React.createElement(componentMapping[c.component])}
+      </div>
+    );
+  }
+
   return connectDropTarget(
     <div style={{ ...style, backgroundColor }}>
-      {isActive
-        ? "Release to drop"
-        : <div style={textStyle}>Drag a Component here</div>}
+      {componentList}
     </div>
   );
 };
@@ -52,12 +72,13 @@ PBDroppableArea.propTypes = {
   canDrop: PropTypes.bool.isRequired
 };
 
-export default DropTarget(
-  ItemTypes.COMPONENT,
-  boxTarget,
-  (connect, monitor) => ({
+const mapStateToProps = ({ components }) => ({ components });
+
+export default compose(
+  DropTarget(ItemTypes.COMPONENT, boxTarget, (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
-  })
+  })),
+  connect(mapStateToProps)
 )(PBDroppableArea);
