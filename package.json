@@ -5,7 +5,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
-    "graphql": "^0.10.1",
+    "graphql": "^0.11.3",
     "immutability-helper": "^2.2.2",
     "pace-progress": "^1.0.2",
     "react": "^15.5.4",
@@ -20,7 +20,7 @@
     "react-router-dom": "^4.1.1",
     "react-transition-group": "^2.0.2",
     "recharts": "^1.0.0-alpha.0",
-    "subscriptions-transport-ws": "^0.8.0"
+    "subscriptions-transport-ws": "^0.9.0"
   },
   "devDependencies": {
     "enzyme": "^2.8.2",
